@@ -9,10 +9,10 @@
 #include <iostream>
 #include <stdio.h>
 #include <fstream>
-#incldue "rapidxml-1.13/rapidxml.hpp"
+//#incldue "rapidxml-1.13/rapidxml.hpp"
 
 using namespace std;
-using namespace rapidxml;
+//using namespace rapidxml;
 
 void loadGame(ifstream&);
 
@@ -26,7 +26,7 @@ int main(int argc, const char * argv[]) {
     }
 
     //generate the filepath
-    string filepath("/Users/Sav/XCodeProjects/zork_clone/zork_clone/");
+    string filepath("/Users/Sav/XCodeProjects/zork_clone/Resources/Games/");
     filepath.append(argv[1]);
     ifstream ifile(filepath);
     
@@ -37,6 +37,7 @@ int main(int argc, const char * argv[]) {
     }
     else
     {
+        cout << filepath;
         printf("File does not exist\n");
         return 1;
     }
