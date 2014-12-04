@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		46FA65B81A2B0768002823B2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46FA65B31A2B0441002823B2 /* main.cpp */; };
+		46FA65D81A2F8CC5002823B2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46FA65B31A2B0441002823B2 /* main.cpp */; };
+		46FA65DB1A2F99F2002823B2 /* obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46FA65DA1A2F99F2002823B2 /* obj.cpp */; };
+		46FA65DE1A30CC8C002823B2 /* XMLParse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46FA65DD1A30CC8C002823B2 /* XMLParse.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,6 +29,17 @@
 		46FA65B31A2B0441002823B2 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		46FA65B61A2B0670002823B2 /* sample.txt.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = sample.txt.xml; sourceTree = "<group>"; };
 		46FA65B71A2B0670002823B2 /* text.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = text.txt; sourceTree = "<group>"; };
+		46FA65CE1A2B1DF4002823B2 /* license.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = license.txt; sourceTree = "<group>"; };
+		46FA65CF1A2B1DF4002823B2 /* manual.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = manual.html; sourceTree = "<group>"; };
+		46FA65D01A2B1DF4002823B2 /* rapidxml.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = rapidxml.hpp; sourceTree = "<group>"; };
+		46FA65D11A2B1DF4002823B2 /* rapidxml_iterators.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = rapidxml_iterators.hpp; sourceTree = "<group>"; };
+		46FA65D21A2B1DF4002823B2 /* rapidxml_print.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = rapidxml_print.hpp; sourceTree = "<group>"; };
+		46FA65D31A2B1DF4002823B2 /* rapidxml_utils.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = rapidxml_utils.hpp; sourceTree = "<group>"; };
+		46FA65D91A2F991A002823B2 /* obj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = obj.h; sourceTree = "<group>"; };
+		46FA65DA1A2F99F2002823B2 /* obj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = obj.cpp; sourceTree = "<group>"; };
+		46FA65DC1A30CA21002823B2 /* XMLParse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMLParse.h; sourceTree = "<group>"; };
+		46FA65DD1A30CC8C002823B2 /* XMLParse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XMLParse.cpp; sourceTree = "<group>"; };
+		46FA65DF1A30CFA8002823B2 /* Room.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Room.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +56,8 @@
 		46FA659C1A2AC4B1002823B2 = {
 			isa = PBXGroup;
 			children = (
+				46FA65BA1A2B0B98002823B2 /* Dependencies */,
+				46FA65B91A2B0B88002823B2 /* Headers */,
 				46FA65B41A2B0670002823B2 /* Resources */,
 				46FA65B11A2B0441002823B2 /* Source */,
 				46FA65A61A2AC4B1002823B2 /* Products */,
@@ -61,6 +76,11 @@
 			isa = PBXGroup;
 			children = (
 				46FA65B31A2B0441002823B2 /* main.cpp */,
+				46FA65D91A2F991A002823B2 /* obj.h */,
+				46FA65DA1A2F99F2002823B2 /* obj.cpp */,
+				46FA65DC1A30CA21002823B2 /* XMLParse.h */,
+				46FA65DD1A30CC8C002823B2 /* XMLParse.cpp */,
+				46FA65DF1A30CFA8002823B2 /* Room.h */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -80,6 +100,34 @@
 				46FA65B71A2B0670002823B2 /* text.txt */,
 			);
 			path = Games;
+			sourceTree = "<group>";
+		};
+		46FA65B91A2B0B88002823B2 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		46FA65BA1A2B0B98002823B2 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				46FA65CD1A2B1DF4002823B2 /* rapidxml-1.13 */,
+			);
+			path = Dependencies;
+			sourceTree = "<group>";
+		};
+		46FA65CD1A2B1DF4002823B2 /* rapidxml-1.13 */ = {
+			isa = PBXGroup;
+			children = (
+				46FA65CE1A2B1DF4002823B2 /* license.txt */,
+				46FA65CF1A2B1DF4002823B2 /* manual.html */,
+				46FA65D01A2B1DF4002823B2 /* rapidxml.hpp */,
+				46FA65D11A2B1DF4002823B2 /* rapidxml_iterators.hpp */,
+				46FA65D21A2B1DF4002823B2 /* rapidxml_print.hpp */,
+				46FA65D31A2B1DF4002823B2 /* rapidxml_utils.hpp */,
+			);
+			path = "rapidxml-1.13";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +186,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46FA65B81A2B0768002823B2 /* main.cpp in Sources */,
+				46FA65DE1A30CC8C002823B2 /* XMLParse.cpp in Sources */,
+				46FA65D81A2F8CC5002823B2 /* main.cpp in Sources */,
+				46FA65DB1A2F99F2002823B2 /* obj.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +272,11 @@
 		46FA65AD1A2AC4B1002823B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/Users/Sav/XCodeProjects/zork_clone/Dependencies/,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -229,6 +284,11 @@
 		46FA65AE1A2AC4B1002823B2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/Users/Sav/XCodeProjects/zork_clone/Dependencies/,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

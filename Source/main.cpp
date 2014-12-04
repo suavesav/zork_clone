@@ -9,12 +9,17 @@
 #include <iostream>
 #include <stdio.h>
 #include <fstream>
-//#incldue "rapidxml-1.13/rapidxml.hpp"
+#include <vector>
+#include "XMLParse.h"
+#include "obj.h"
+//#include <rapidxml-1.13/rapidxml.hpp>
+//#include <rapidxml-1.13/rapidxml_print.hpp>
 
 using namespace std;
 //using namespace rapidxml;
 
 void loadGame(ifstream&);
+//void printChildren(xml_node<> *);
 
 int main(int argc, const char * argv[]) {
     
@@ -33,7 +38,7 @@ int main(int argc, const char * argv[]) {
     //Try opening the file
     if(ifile.is_open())
     {
-        loadGame(ifile);
+        XMLParse Game(ifile);
     }
     else
     {
@@ -42,14 +47,4 @@ int main(int argc, const char * argv[]) {
         return 1;
     }
     return 0;
-}
-
-void loadGame(ifstream& ifile)
-{
-    string line;
-    while(getline(ifile, line))
-    {
-        cout << line << "\n";
-    }
-    return;
 }
