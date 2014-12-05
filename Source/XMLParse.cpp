@@ -8,6 +8,9 @@
 
 #include "XMLParse.h"
 
+XMLParse::XMLParse()
+{}
+
 XMLParse::XMLParse(istream &ifile)
 {
 //    cout << "Entered Constructor \n";
@@ -34,8 +37,65 @@ void XMLParse::printChildNodes(xml_node<> *rootNode)
     }
 }
 
+//Function to iterate through the contents of a node
+void XMLParse::iterateNodes(xml_node<> *rootNode)
+{
+    xml_node<> *pNode = rootNode->first_node();
+    while(pNode != 0)
+    {
+        //cout << pNode->name() << "\n";
+        pNode = pNode->next_sibling();
+    }
+}
+
+//Map XMLParse::makeMap(xml_node<> *rootNode)
+//{
+//    Map map;
+//    xml_node<> *pNode = rootNode->first_node();
+//    while(pNode != 0)
+//    {
+//        cout << pNode->name() << " " << pNode->value() << "\n";
+//        string node = pNode->name();
+//        if(node=="room")
+//        {
+//            Room room = makeRoom(pNode);
+//            map.rooms.push_back(room);
+//        }
+//        else if(node=="container")
+//        {
+//            Container container= makeContainer(pNode);
+//            map.containers.push_back(container);
+//        }
+//        else if(node == "item")
+//        {
+//            Item item = makeItem(pNode);
+//            map.items.push_back(item);
+//        }
+//        else if(node == "creature")
+//        {
+//            Creature creature = makeCreature(pNode);
+//            map.creatures.push_back(creature);
+//        }
+//        pNode = pNode->next_sibling();
+//    }
+//    return map;
+//}
+
+//Make Room
+
+//Make Container
+
+//Make Item
+
+//Make Creature
+
 //Returns the rootNode of xmlDocument
 xml_node<> * XMLParse::getRootNode() const
 {
     return rootNode;
 }
+
+//xml_document<> XMLParse::getDocument() const
+//{
+//    return xmlDocument;
+//}

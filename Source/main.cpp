@@ -11,16 +11,16 @@
 #include <fstream>
 #include <vector>
 #include "XMLParse.h"
-#include "obj.h"
-//#include <rapidxml-1.13/rapidxml.hpp>
-//#include <rapidxml-1.13/rapidxml_print.hpp>
+#include "Map.h"
 
 using namespace std;
 //using namespace rapidxml;
 
-void loadGame(ifstream&);
-//void printChildren(xml_node<> *);
+//Function Declarations
+Map makeMap(ifstream&);
+void playGame(Map);
 
+//Main Function
 int main(int argc, const char * argv[]) {
     
     //Check if correct number of arguments
@@ -38,7 +38,8 @@ int main(int argc, const char * argv[]) {
     //Try opening the file
     if(ifile.is_open())
     {
-        XMLParse Game(ifile);
+        Map gameMap = makeMap(ifile);
+        playGame(gameMap);
     }
     else
     {
@@ -47,4 +48,18 @@ int main(int argc, const char * argv[]) {
         return 1;
     }
     return 0;
+}
+
+//This Function makes the map for the game
+Map makeMap(ifstream& ifile)
+{
+    XMLParse xml(ifile);
+    Map map(&xml);
+    return map;
+}
+
+//This function plays game from the map
+void playGame(Map map)
+{
+    return;
 }

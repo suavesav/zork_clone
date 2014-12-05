@@ -10,6 +10,11 @@
 		46FA65D81A2F8CC5002823B2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46FA65B31A2B0441002823B2 /* main.cpp */; };
 		46FA65DB1A2F99F2002823B2 /* obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46FA65DA1A2F99F2002823B2 /* obj.cpp */; };
 		46FA65DE1A30CC8C002823B2 /* XMLParse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46FA65DD1A30CC8C002823B2 /* XMLParse.cpp */; };
+		46FA65E71A30F98E002823B2 /* Room.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46FA65E61A30F98E002823B2 /* Room.cpp */; };
+		46FA65E91A3138A9002823B2 /* Map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46FA65E81A3138A9002823B2 /* Map.cpp */; };
+		46FA65EB1A32097C002823B2 /* Creature.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46FA65EA1A32097C002823B2 /* Creature.cpp */; };
+		46FA65ED1A320BB0002823B2 /* Item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46FA65EC1A320BB0002823B2 /* Item.cpp */; };
+		46FA65EF1A320D03002823B2 /* Container.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46FA65EE1A320D03002823B2 /* Container.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,6 +45,17 @@
 		46FA65DC1A30CA21002823B2 /* XMLParse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMLParse.h; sourceTree = "<group>"; };
 		46FA65DD1A30CC8C002823B2 /* XMLParse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XMLParse.cpp; sourceTree = "<group>"; };
 		46FA65DF1A30CFA8002823B2 /* Room.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Room.h; sourceTree = "<group>"; };
+		46FA65E01A30E8DF002823B2 /* Creature.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Creature.h; sourceTree = "<group>"; };
+		46FA65E11A30E8EC002823B2 /* Container.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Container.h; sourceTree = "<group>"; };
+		46FA65E21A30E8F9002823B2 /* Item.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		46FA65E31A30E907002823B2 /* Trigger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Trigger.h; sourceTree = "<group>"; };
+		46FA65E41A30E91C002823B2 /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		46FA65E51A30EA90002823B2 /* Map.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Map.h; sourceTree = "<group>"; };
+		46FA65E61A30F98E002823B2 /* Room.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Room.cpp; sourceTree = "<group>"; };
+		46FA65E81A3138A9002823B2 /* Map.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Map.cpp; sourceTree = "<group>"; };
+		46FA65EA1A32097C002823B2 /* Creature.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Creature.cpp; sourceTree = "<group>"; };
+		46FA65EC1A320BB0002823B2 /* Item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Item.cpp; sourceTree = "<group>"; };
+		46FA65EE1A320D03002823B2 /* Container.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Container.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,9 +74,9 @@
 			children = (
 				46FA65BA1A2B0B98002823B2 /* Dependencies */,
 				46FA65B91A2B0B88002823B2 /* Headers */,
+				46FA65A61A2AC4B1002823B2 /* Products */,
 				46FA65B41A2B0670002823B2 /* Resources */,
 				46FA65B11A2B0441002823B2 /* Source */,
-				46FA65A61A2AC4B1002823B2 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -75,12 +91,23 @@
 		46FA65B11A2B0441002823B2 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				46FA65EE1A320D03002823B2 /* Container.cpp */,
+				46FA65E11A30E8EC002823B2 /* Container.h */,
+				46FA65EA1A32097C002823B2 /* Creature.cpp */,
+				46FA65E01A30E8DF002823B2 /* Creature.h */,
+				46FA65EC1A320BB0002823B2 /* Item.cpp */,
+				46FA65E21A30E8F9002823B2 /* Item.h */,
 				46FA65B31A2B0441002823B2 /* main.cpp */,
-				46FA65D91A2F991A002823B2 /* obj.h */,
+				46FA65E81A3138A9002823B2 /* Map.cpp */,
+				46FA65E51A30EA90002823B2 /* Map.h */,
 				46FA65DA1A2F99F2002823B2 /* obj.cpp */,
-				46FA65DC1A30CA21002823B2 /* XMLParse.h */,
-				46FA65DD1A30CC8C002823B2 /* XMLParse.cpp */,
+				46FA65D91A2F991A002823B2 /* obj.h */,
+				46FA65E41A30E91C002823B2 /* Player.h */,
+				46FA65E61A30F98E002823B2 /* Room.cpp */,
 				46FA65DF1A30CFA8002823B2 /* Room.h */,
+				46FA65E31A30E907002823B2 /* Trigger.h */,
+				46FA65DD1A30CC8C002823B2 /* XMLParse.cpp */,
+				46FA65DC1A30CA21002823B2 /* XMLParse.h */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -187,8 +214,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				46FA65DE1A30CC8C002823B2 /* XMLParse.cpp in Sources */,
+				46FA65EF1A320D03002823B2 /* Container.cpp in Sources */,
+				46FA65E91A3138A9002823B2 /* Map.cpp in Sources */,
 				46FA65D81A2F8CC5002823B2 /* main.cpp in Sources */,
+				46FA65E71A30F98E002823B2 /* Room.cpp in Sources */,
+				46FA65EB1A32097C002823B2 /* Creature.cpp in Sources */,
 				46FA65DB1A2F99F2002823B2 /* obj.cpp in Sources */,
+				46FA65ED1A320BB0002823B2 /* Item.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

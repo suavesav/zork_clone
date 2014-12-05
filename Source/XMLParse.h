@@ -8,8 +8,6 @@
 
 #include <iostream>
 #include <string>
-#include <stdio.h>
-#include <vector>
 #include <rapidxml-1.13/rapidxml.hpp>
 
 using namespace std;
@@ -21,9 +19,13 @@ using namespace rapidxml;
 class XMLParse
 {
 public:
+    XMLParse();
     XMLParse(istream &ifile);
     xml_node<> * getRootNode() const;
+    xml_document<> getDocument() const;
     void printChildNodes(xml_node<> *);
+    void iterateNodes(xml_node<> *);
+
 private:
     xml_document<> xmlDocument;
     xml_node<> *rootNode;
