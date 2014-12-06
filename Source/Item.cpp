@@ -18,7 +18,7 @@ Item::Item(XMLParse *xml, xml_node<> *rootNode)
     while(pNode != 0)
     {
         string node = pNode->name();
-        cout << node << "\n";
+//        cout << node << "\n";
         if(node == "name")
             name = pNode->value();
         else if(node == "description")

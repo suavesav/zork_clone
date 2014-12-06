@@ -28,7 +28,7 @@ private:
     string status;
     string description;
     vector<string> accept;
-    vector<string> items;
+    vector<string> container_items;
     //vector<Trigger> triggers;
 };
 

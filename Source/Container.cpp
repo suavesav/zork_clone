@@ -18,15 +18,16 @@ Container::Container(XMLParse *xml, xml_node<> *rootNode)
     while(pNode != 0)
     {
         string node = pNode->name();
-        cout << node << "\n";
+//        cout << node << "\n";
         if(node == "name")
             name = pNode->value();
         else if(node == "description")
             description = pNode->value();
         else if(node == "accept")
             accept.push_back(pNode->value());
-        else if(node == "item")
-            items.push_back(pNode->value());
+//        else if(node == "item")
+//            cout << "Item\n";
+//            container_items.push_back(pNode->value());
         else if(node == "status")
             status = pNode->value();
         

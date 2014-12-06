@@ -9,11 +9,20 @@
 #ifndef zork_clone_Player_h
 #define zork_clone_Player_h
 
+#include <string>
+#include <vector>
+
 class Player
 {
 public:
-    
+    Player();
 private:
+    int health;
+    int maxHealth;
+    bool dead;
+    //Inventory
+    //Position
+    string currRoom;
     
 }
 

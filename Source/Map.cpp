@@ -28,8 +28,8 @@ Map::Map(XMLParse *xml)
         else if(node=="container")
         {
             cout << "Container \n";
-            Container container(xml, pNode);
-            containers.insert(make_pair(container.getName(), container));
+            Container game_container(xml, pNode);
+            containers.insert(make_pair(game_container.getName(), game_container));
         }
         else if(node == "item")
         {
