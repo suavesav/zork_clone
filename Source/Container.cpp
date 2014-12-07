@@ -30,6 +30,11 @@ Container::Container(XMLParse *xml, xml_node<> *rootNode)
             container_items.push_back(pNode->value());
         else if(node == "status")
             status = pNode->value();
+        else if(node == "trigger")
+        {
+            Trigger T(pNode);
+            triggers.push_back(T);
+        }
         
         pNode = pNode->next_sibling();
     }
@@ -52,9 +57,19 @@ int Container::itemInContainer(string s)
 }
 
 //Add an item to the container's inventory
+//If has accept add only if acceptable
 void Container::addItem(string s)
 {
+//    if(accept.size() == 0)
     container_items.push_back(s);
+//    else
+//    {
+//        for(int l = 0; l < accept.size(); l++)
+//        {
+//            if(accept.at(l) == s)
+//                container_items.push_back(s);
+//        }
+//    }
 }
 
 //Remove an item from the container's inventory
@@ -72,7 +87,7 @@ void Container::printItems()
         cout << name << "is empty.";
     else
     {
-        cout << name << "contains ";
+        cout << name << " contains ";
         for(int l = 0; l < container_items.size(); l++)
         {
             if(l != 0)
@@ -81,4 +96,9 @@ void Container::printItems()
         }
     }
     cout << "\n";
+}
+
+string Container::getStatus()
+{
+    return status;
 }

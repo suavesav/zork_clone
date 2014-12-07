@@ -53,6 +53,11 @@ Room::Room(XMLParse *xml, xml_node<> *rootNode)
             }
             borders.push_back(b);
         }
+        else if(node == "trigger")
+        {
+            Trigger T(pNode);
+            triggers.push_back(T);
+        }
         pNode = pNode->next_sibling();
     }
 }
@@ -130,4 +135,17 @@ void Room::printItems()
         cout << items.at(l) << " ";
     }
     cout << "\n";
+}
+
+//Checks if the player can go in a certain direction
+string Room::roomInDirection(string dir)
+{
+    for(int location = 0; location < borders.size(); location++)
+    {
+        if(borders.at(location).direction == dir)
+        {
+            return borders.at(location).name;
+        }
+    }
+    return "Can't go that way";
 }

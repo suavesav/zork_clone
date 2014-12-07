@@ -9,6 +9,7 @@
 #include <string>
 #include <vector>
 #include "XMLParse.h"
+#include "Trigger.h"
 
 using namespace std;
 
@@ -26,6 +27,7 @@ public:
     void delItem(string);
     void addItem(string);
     void printItems();
+    string getStatus();
     
 private:
     string name;
@@ -33,7 +35,7 @@ private:
     string description;
     vector<string> accept;
     vector<string> container_items;
-    //vector<Trigger> triggers;
+    vector<Trigger> triggers;
 };
 
 #endif

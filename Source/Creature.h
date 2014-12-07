@@ -29,7 +29,7 @@ private:
     string description;
     vector<string> vulnerability;
     //int hit;
-    //vector<Trigger> triggers;
+    vector<Trigger> triggers;
     
     
 };

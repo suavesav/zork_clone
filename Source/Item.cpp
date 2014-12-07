@@ -13,6 +13,7 @@ Item::Item()
 
 Item::Item(XMLParse *xml, xml_node<> *rootNode)
 {
+    canTurnOn = 0;
 //    printf("Calling the Item Constructor\n");
     xml_node<> *pNode = rootNode->first_node();
     while(pNode != 0)
@@ -27,6 +28,24 @@ Item::Item(XMLParse *xml, xml_node<> *rootNode)
             writing = pNode->value();
         else if(node == "status")
             status = pNode->value();
+        else if(node == "turnon")
+        {
+            canTurnOn = 1;
+            xml_node<> * nextNode = pNode->first_node();
+            while(nextNode != 0)
+            {
+                string att = nextNode->name();
+                if(att == "print")
+                {
+                    turnon.turnOnPrint = nextNode->value();
+                }
+                else if(att == "action")
+                {
+                    turnon.action = nextNode->value();
+                }
+                nextNode = nextNode->next_sibling();
+            }
+        }
         
         pNode = pNode->next_sibling();
     }
@@ -40,4 +59,29 @@ string Item::getName()
 string Item::getWriting()
 {
     return writing;
+}
+
+bool Item::getCanTurnOn()
+{
+    return canTurnOn;
+}
+
+string Item::getAction()
+{
+    return turnon.action;
+}
+
+void Item::setStatus(string s)
+{
+    status = s;
+}
+
+string Item::getTurnOnPrint()
+{
+    return turnon.turnOnPrint;
+}
+
+void Item::setCanTurnOn(bool b)
+{
+    canTurnOn = b;
 }

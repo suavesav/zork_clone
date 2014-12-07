@@ -25,19 +25,17 @@ void Game::gameLoop()
 {
     int success = 0;
     string command;
-    room = map.rooms.find(player.getCurrRoom())->second;
+    room = &map.rooms.find(player.getCurrRoom())->second;
+    
     while(!gameOver)
     {
-        //cout << player.getCurrRoom();
+        if(player.getCurrRoom() != room->getName())
+            room = &map.rooms.find(player.getCurrRoom())->second;
+        room->printDescription();
         
-        room.printDescription();
-        while(success != 1)
-        {
-            getline(cin, command);
-            success = parseInput(command);
-        }
+        getline(cin, command);
+        success = parseInput(command);
         success = 0;
-//        gameOver = 1;
     }
 }
 
@@ -49,7 +47,22 @@ int Game::parseInput(string command)
 //    success = 0;
     
     if(word1 == "n" || word1 == "s" ||word1 == "e" ||word1 == "w")
-    {}
+    {
+        if(word1 == "n")
+            word1 = "north";
+        else if(word1 == "s")
+            word1 = "south";
+        else if(word1 == "e")
+            word1 = "east";
+        else if(word1 == "w")
+            word1 = "west";
+        
+        string inThatDirection =room->roomInDirection(word1);
+        if(inThatDirection != "Can't go that way")
+            player.setCurrRoom(inThatDirection);
+        else
+            cout << inThatDirection << "\n";
+    }
     else if(word1 == "i")
     {
         player.showInventory();
@@ -57,18 +70,29 @@ int Game::parseInput(string command)
     else if(word1 == "take")
     {
         //room.printItems();
-        if(room.itemInRoom(word2) != -1)
+        if(room->itemInRoom(word2) != -1)
         {
             player.addInventory(word2);
-            room.delItem(word2);
+            room->delItem(word2);
             cout << "Item " << word2 << " added to inventory.\n";
         }
-//        else if(map.containers.find(word2)->second.itemInContainer(word2) != -1)
-//        {
-//            
-//        }
         else
-            cout << "Error \n";
+        {
+            bool gotItem = 0;
+            for(auto it = map.containers.begin(); it != map.containers.end(); it++)
+            {
+                Container *c = &it->second;
+                if(c->itemInContainer(word2))
+                {
+                    player.addInventory(word2);
+                    c->delItem(word2);
+                    cout << "Item " << word2 << " added to inventory.\n";
+                    gotItem = 1;
+                }
+            }
+            if(!gotItem)
+                cout << "No such item in room or containers\n";
+        }
     }
     else if(command == "open exit")
     {
@@ -77,9 +101,11 @@ int Game::parseInput(string command)
     }
     else if(word1 == "open")
     {
-        if(room.containerInRoom(word2) != -1)
+        if(room->containerInRoom(word2) != -1)
         {
-            map.containers.find(word2)->second.printItems();
+            Container *c = &map.containers.find(word2)->second;
+            if(c->getStatus() == "" || c->getStatus() == "unlocked")
+                c->printItems();
         }
     }
     else if(word1 == "read")
@@ -100,16 +126,39 @@ int Game::parseInput(string command)
         if(player.findItem(word2) != -1)
         {
             player.delInventory(word2);
-            room.addItem(word2);
+            room->addItem(word2);
             cout << word2 << " dropped.\n";
         }
         else
             cout << "Error \n";
     }
     else if(word1 == "put")
-    {}
+    {
+        if(player.findItem(word2) != -1)
+        {
+            if(room->containerInRoom(word4) != -1)
+            {
+                Container *c = &map.containers.find(word2)->second;
+                c->addItem(word2);
+                player.delInventory(word2);
+            }
+        }
+    }
     else if(word1 == "turn" && word2 == "on")
-    {}
+    {
+        if(player.findItem(word3) != -1)
+        {
+            Item *i = &map.items.find(word3)->second;
+            if(i->getCanTurnOn())
+            {
+                string iword1, iword2, iword3, iword4;
+                stringstream(i->getAction()) >> iword1 >> iword2 >> iword3 >> iword4;
+                i->setStatus(iword4);
+                cout << i->getTurnOnPrint() << "\n";
+                i->setCanTurnOn(0);
+            }
+        }
+    }
     else if(word1 == "attack" && word3 == "with")
     {}
     else

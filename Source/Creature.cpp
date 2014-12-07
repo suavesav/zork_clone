@@ -25,6 +25,11 @@ Creature::Creature(XMLParse *xml, xml_node<> *rootNode)
             description = pNode->value();
         else if(node == "vulnerability")
             vulnerability.push_back(pNode->value());
+        else if(node == "trigger")
+        {
+            Trigger T(pNode);
+            triggers.push_back(T);
+        }
         pNode = pNode->next_sibling();
     }
 }

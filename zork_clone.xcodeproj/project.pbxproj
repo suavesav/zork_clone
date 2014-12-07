@@ -17,6 +17,7 @@
 		46FA65EF1A320D03002823B2 /* Container.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46FA65EE1A320D03002823B2 /* Container.cpp */; };
 		46FA65F21A33C301002823B2 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46FA65F11A33C301002823B2 /* Player.cpp */; };
 		46FA65F41A33C30E002823B2 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46FA65F31A33C30E002823B2 /* Game.cpp */; };
+		46FA65F61A343E02002823B2 /* Trigger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46FA65F51A343E02002823B2 /* Trigger.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -61,6 +62,7 @@
 		46FA65F01A33BC0E002823B2 /* Game.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		46FA65F11A33C301002823B2 /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
 		46FA65F31A33C30E002823B2 /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
+		46FA65F51A343E02002823B2 /* Trigger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Trigger.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 				46FA65E41A30E91C002823B2 /* Player.h */,
 				46FA65E61A30F98E002823B2 /* Room.cpp */,
 				46FA65DF1A30CFA8002823B2 /* Room.h */,
+				46FA65F51A343E02002823B2 /* Trigger.cpp */,
 				46FA65E31A30E907002823B2 /* Trigger.h */,
 				46FA65DD1A30CC8C002823B2 /* XMLParse.cpp */,
 				46FA65DC1A30CA21002823B2 /* XMLParse.h */,
@@ -231,6 +234,7 @@
 				46FA65DB1A2F99F2002823B2 /* obj.cpp in Sources */,
 				46FA65ED1A320BB0002823B2 /* Item.cpp in Sources */,
 				46FA65F41A33C30E002823B2 /* Game.cpp in Sources */,
+				46FA65F61A343E02002823B2 /* Trigger.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

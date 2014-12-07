@@ -40,6 +40,7 @@ public:
     void delItem(string);
     void addItem(string);
     void printItems();
+    string roomInDirection(string);
     
 private:
     bool inRoom;
@@ -51,7 +52,7 @@ private:
     vector<string> containers;
     vector<string> items;
     vector<string> creatures;
-    //vector<Trigger> triggers;
+    vector<Trigger> triggers;
 };
 
 #endif

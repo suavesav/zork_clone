@@ -30,7 +30,7 @@ private:
     Map map;
     Player player;
     bool gameOver;
-    Room room;
+    Room *room;
     
 };
 
