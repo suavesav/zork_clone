@@ -22,6 +22,7 @@ public:
     Item(XMLParse *, xml_node<> *);
     
     string getName();
+    string getWriting();
     
 private:
     string name;

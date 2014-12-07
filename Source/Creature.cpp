@@ -13,7 +13,7 @@ Creature::Creature()
 
 Creature::Creature(XMLParse *xml, xml_node<> *rootNode)
 {
-    printf("Calling the Creature Constructor\n");
+//    printf("Calling the Creature Constructor\n");
     xml_node<> *pNode = rootNode->first_node();
     while(pNode != 0)
     {

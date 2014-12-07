@@ -22,6 +22,10 @@ public:
     Container(XMLParse *, xml_node<> *);
     
     string getName();
+    int itemInContainer(string);
+    void delItem(string);
+    void addItem(string);
+    void printItems();
     
 private:
     string name;

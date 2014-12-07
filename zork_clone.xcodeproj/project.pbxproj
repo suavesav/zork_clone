@@ -15,6 +15,8 @@
 		46FA65EB1A32097C002823B2 /* Creature.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46FA65EA1A32097C002823B2 /* Creature.cpp */; };
 		46FA65ED1A320BB0002823B2 /* Item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46FA65EC1A320BB0002823B2 /* Item.cpp */; };
 		46FA65EF1A320D03002823B2 /* Container.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46FA65EE1A320D03002823B2 /* Container.cpp */; };
+		46FA65F21A33C301002823B2 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46FA65F11A33C301002823B2 /* Player.cpp */; };
+		46FA65F41A33C30E002823B2 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46FA65F31A33C30E002823B2 /* Game.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -56,6 +58,9 @@
 		46FA65EA1A32097C002823B2 /* Creature.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Creature.cpp; sourceTree = "<group>"; };
 		46FA65EC1A320BB0002823B2 /* Item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Item.cpp; sourceTree = "<group>"; };
 		46FA65EE1A320D03002823B2 /* Container.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Container.cpp; sourceTree = "<group>"; };
+		46FA65F01A33BC0E002823B2 /* Game.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		46FA65F11A33C301002823B2 /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		46FA65F31A33C30E002823B2 /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +100,8 @@
 				46FA65E11A30E8EC002823B2 /* Container.h */,
 				46FA65EA1A32097C002823B2 /* Creature.cpp */,
 				46FA65E01A30E8DF002823B2 /* Creature.h */,
+				46FA65F31A33C30E002823B2 /* Game.cpp */,
+				46FA65F01A33BC0E002823B2 /* Game.h */,
 				46FA65EC1A320BB0002823B2 /* Item.cpp */,
 				46FA65E21A30E8F9002823B2 /* Item.h */,
 				46FA65B31A2B0441002823B2 /* main.cpp */,
@@ -102,6 +109,7 @@
 				46FA65E51A30EA90002823B2 /* Map.h */,
 				46FA65DA1A2F99F2002823B2 /* obj.cpp */,
 				46FA65D91A2F991A002823B2 /* obj.h */,
+				46FA65F11A33C301002823B2 /* Player.cpp */,
 				46FA65E41A30E91C002823B2 /* Player.h */,
 				46FA65E61A30F98E002823B2 /* Room.cpp */,
 				46FA65DF1A30CFA8002823B2 /* Room.h */,
@@ -215,12 +223,14 @@
 			files = (
 				46FA65DE1A30CC8C002823B2 /* XMLParse.cpp in Sources */,
 				46FA65EF1A320D03002823B2 /* Container.cpp in Sources */,
+				46FA65F21A33C301002823B2 /* Player.cpp in Sources */,
 				46FA65E91A3138A9002823B2 /* Map.cpp in Sources */,
 				46FA65D81A2F8CC5002823B2 /* main.cpp in Sources */,
 				46FA65E71A30F98E002823B2 /* Room.cpp in Sources */,
 				46FA65EB1A32097C002823B2 /* Creature.cpp in Sources */,
 				46FA65DB1A2F99F2002823B2 /* obj.cpp in Sources */,
 				46FA65ED1A320BB0002823B2 /* Item.cpp in Sources */,
+				46FA65F41A33C30E002823B2 /* Game.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

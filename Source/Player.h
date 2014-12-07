@@ -11,19 +11,30 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
+
+using namespace std;
 
 class Player
 {
 public:
     Player();
+    void setCurrRoom(string);
+    string getCurrRoom();
+    
+    void addInventory(string);
+    void delInventory(string);
+    void showInventory();
+    int findItem(string);
+    
 private:
     int health;
     int maxHealth;
     bool dead;
     //Inventory
+    vector<string> inventory;
     //Position
     string currRoom;
-    
-}
+};
 
 #endif

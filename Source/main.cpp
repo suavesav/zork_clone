@@ -12,6 +12,7 @@
 #include <vector>
 #include "XMLParse.h"
 #include "Map.h"
+#include "Game.h"
 
 using namespace std;
 //using namespace rapidxml;
@@ -61,5 +62,6 @@ Map makeMap(ifstream& ifile)
 //This function plays game from the map
 void playGame(Map map)
 {
-    return;
+    Game G(map);
+    G.gameLoop();
 }

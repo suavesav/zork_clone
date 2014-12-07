@@ -30,10 +30,19 @@ class Room
 public:
     Room();
     Room(XMLParse *, xml_node<> *);
+//    Room(const Room &room);
     
     string getName();
+    bool getInRoom();
+    void printDescription();
+    int itemInRoom(string);
+    int containerInRoom(string);
+    void delItem(string);
+    void addItem(string);
+    void printItems();
     
 private:
+    bool inRoom;
     string name;
     string status;
     string type;

@@ -24,10 +24,18 @@ public:
     Map();
     Map(XMLParse *);
     
-private:
+    string getFirstRoom();
+    string readItem(string s);
     unordered_map<string, Room> rooms;
+    unordered_map<string, Item> items;
     unordered_map<string, Creature> creatures;
     unordered_map<string, Container> containers;
-    unordered_map<string, Item> items;
+    
+private:
+    bool gotFirstRoom;
+    string firstRoom;
+    
+    
+    
 };
 #endif

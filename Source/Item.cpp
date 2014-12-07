@@ -13,7 +13,7 @@ Item::Item()
 
 Item::Item(XMLParse *xml, xml_node<> *rootNode)
 {
-    printf("Calling the Item Constructor\n");
+//    printf("Calling the Item Constructor\n");
     xml_node<> *pNode = rootNode->first_node();
     while(pNode != 0)
     {
@@ -35,4 +35,9 @@ Item::Item(XMLParse *xml, xml_node<> *rootNode)
 string Item::getName()
 {
     return name;
+}
+
+string Item::getWriting()
+{
+    return writing;
 }
