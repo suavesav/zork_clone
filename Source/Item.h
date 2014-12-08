@@ -42,8 +42,7 @@ private:
     string writing;
     TurnOn turnon;
     bool canTurnOn;
-    //bool turnon;
-    //vector<Trigger> triggers;
+    //string owner;
 };
 
 #endif

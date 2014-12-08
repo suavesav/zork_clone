@@ -66,3 +66,55 @@ Trigger::Trigger(xml_node<> * root_node)
         pNode = pNode->next_sibling();
     }
 }
+
+TrigCondition Trigger::getCondition()
+{
+    return tc;
+}
+
+string Trigger::getTriggerCommand()
+{
+    return triggerCommand;
+}
+
+string Trigger::getAction()
+{
+    return action;
+}
+
+string Trigger::getType()
+{
+    return type;
+}
+
+string Trigger::getTriggerPrint()
+{
+    return triggerPrint;
+}
+
+bool Trigger::getActivated()
+{
+    return activated;
+}
+
+void Trigger::setActivated(bool b)
+{
+    activated = b;
+}
+
+//bool Trigger::parseTrigger(Trigger T, string s)
+//{
+//    activated = 0;
+//    if(triggerCommand == "" || triggerCommand == s)
+//    {
+//        if(tc.owner != "")
+//        {
+//            checkOwner(T);
+//        }
+//        else if(tc.status != "")
+//        {
+//            checkStatus(T);
+//        }
+//    }
+//    return activated;
+//}

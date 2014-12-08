@@ -6,6 +6,11 @@
 //  Copyright (c) 2014 Savinay Nangalia. All rights reserved.
 //
 
+
+
+#ifndef zork_clone_Room_h
+#define zork_clone_Room_h
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -15,9 +20,6 @@
 #include "XMLParse.h"
 
 using namespace std;
-
-#ifndef zork_clone_Room_h
-#define zork_clone_Room_h
 
 struct Border
 {
@@ -41,6 +43,9 @@ public:
     void addItem(string);
     void printItems();
     string roomInDirection(string);
+    void addTriggers(vector<Trigger> *);
+    vector<string> getContainers();
+    vector<string> getCreatures();
     
 private:
     bool inRoom;

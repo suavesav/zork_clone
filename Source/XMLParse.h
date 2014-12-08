@@ -6,6 +6,10 @@
 //  Copyright (c) 2014 Savinay Nangalia. All rights reserved.
 //
 
+
+#ifndef zork_clone_XMLParse_h
+#define zork_clone_XMLParse_h
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -13,9 +17,6 @@
 
 using namespace std;
 using namespace rapidxml;
-
-#ifndef zork_clone_XMLParse_h
-#define zork_clone_XMLParse_h
 
 class XMLParse
 {

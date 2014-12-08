@@ -33,7 +33,9 @@ void Game::gameLoop()
             room = &map.rooms.find(player.getCurrRoom())->second;
         room->printDescription();
         
+        checkTriggers();
         getline(cin, command);
+        checkTriggers();
         success = parseInput(command);
         success = 0;
     }
@@ -168,3 +170,108 @@ int Game::parseInput(string command)
     }
     return success;
 }
+
+void Game::checkTriggers()
+{
+    currentTriggers.clear();
+    room->addTriggers(&currentTriggers);
+    if(room->getCreatures().size()!=0)
+    {
+        for(int counter = 0; counter < room->getCreatures().size(); counter++)
+        {
+            Creature *c = &map.creatures.find(room->getCreatures().at(counter))->second;
+            c->addTriggers(&currentTriggers);
+        }
+    }
+    if(room->getContainers().size()!=0)
+    {
+        for(int counter = 0; counter < room->getContainers().size(); counter++)
+        {
+            Container *c = &map.containers.find(room->getContainers().at(counter))->second;
+            c->addTriggers(&currentTriggers);
+        }
+    }
+}
+
+void Game::parseTrigger(string command)
+{
+    for(int counter = 0; counter<currentTriggers.size(); counter++)
+    {
+        Trigger T = currentTriggers.at(counter);
+        if(T.getActivated() && T.getType() == "Permanent")
+            T.setActivated(0);
+        if(T.getActivated() == 0)
+        {
+            if(T.getTriggerCommand() == "" || T.getTriggerCommand() == command)
+            {
+                
+                if(T.getCondition().owner != "")
+                    checkOwner(T);
+                else if(T.getCondition().status != "")
+                    checkStatus(T);
+            }
+        }
+    }
+}
+
+void Game::update(string att, string val)
+{
+    
+}
+
+void Game::checkOwner(Trigger T)
+{
+    if(T.getCondition().owner == "inventory")
+    {
+        if((player.findItem(T.getCondition().object)!=-1 && T.getCondition().has) || (player.findItem(T.getCondition().object)==-1 && !T.getCondition().has))
+        {
+            T.setActivated(1);
+            if(T.getTriggerPrint() != "")
+                cout << T.getTriggerPrint() << "\n";
+            if(T.getAction() != "")
+                parseAction(T.getAction());
+        }
+    }
+    else if((room->itemInRoom(T.getCondition().object) != -1 &&T.getCondition().has) || (room->itemInRoom(T.getCondition().object)==-1 && !T.getCondition().has))
+    {
+        T.setActivated(1);
+        if(T.getTriggerPrint() != "")
+            cout << T.getTriggerPrint() << "\n";
+        if(T.getAction() != "")
+            parseAction(T.getAction());
+    }
+    else
+    {
+        for(int counter = 0; counter < room->getContainers().size(); counter++)
+        {
+            if(T.getCondition().owner == room->getContainers().at(counter))
+            {
+                Container * c = &map.containers.find(room->getContainers().at(counter))->second;
+                if((c->itemInContainer(T.getCondition().object)!=-1 && T.getCondition().has) || (c->itemInContainer(T.getCondition().object)==-1 && !T.getCondition().has))
+                {
+                    T.setActivated(1);
+                    if(T.getTriggerPrint() != "")
+                        cout << T.getTriggerPrint() << "\n";
+                    if(T.getAction() != "")
+                        parseAction(T.getAction());
+                }
+            }
+        }
+    }
+}
+
+void Game::checkStatus(Trigger T)
+{
+//    bool notFound = 1;
+//    string obj = T.getCondition().object;
+//    string stat = T.getCondition().status;
+    
+    //search the entire map for something that matches obj and check to see if its status matches stat
+//    while(notFound)
+//    {
+//        for(int counter = 0; counter < map)
+//    }
+}
+
+void Game::parseAction(string s)
+{}

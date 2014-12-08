@@ -6,6 +6,12 @@
 //  Copyright (c) 2014 Savinay Nangalia. All rights reserved.
 //
 
+
+
+
+#ifndef zork_clone_Map_h
+#define zork_clone_Map_h
+
 #include <vector>
 #include <unordered_map>
 #include "Room.h"
@@ -14,9 +20,7 @@
 #include "Item.h"
 #include "XMLParse.h"
 
-
-#ifndef zork_clone_Map_h
-#define zork_clone_Map_h
+class Room;
 
 class Map
 {

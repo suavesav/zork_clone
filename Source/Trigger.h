@@ -6,11 +6,16 @@
 //  Copyright (c) 2014 Savinay Nangalia. All rights reserved.
 //
 
-#include <string>
-#include "XMLParse.h"
 
 #ifndef zork_clone_Trigger_h
 #define zork_clone_Trigger_h
+
+#include <string>
+#include "XMLParse.h"
+
+using namespace std;
+
+class XMLParse;
 
 struct TrigCondition
 {
@@ -25,6 +30,15 @@ class Trigger
 public:
     Trigger();
     Trigger(xml_node<> *);
+    
+    TrigCondition getCondition();
+    string getTriggerCommand();
+    string getAction();
+    string getType();
+    string getTriggerPrint();
+    bool getActivated();
+    void setActivated(bool);
+    //bool parseTrigger(Trigger, string);
     
 private:
     bool activated;
