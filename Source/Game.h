@@ -30,11 +30,11 @@ public:
     void gameLoop();
     int parseInput(string);
     void checkTriggers();
-    void parseTrigger(string);
+    bool parseTrigger(string);
     void update(string, string);
     void parseAction(string);
-    void checkOwner(Trigger T);
-    void checkStatus(Trigger T);
+    void checkOwner(Trigger * T);
+    void checkStatus(Trigger * T);
     
 private:
     Map map;

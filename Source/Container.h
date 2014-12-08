@@ -28,6 +28,7 @@ public:
     void addItem(string);
     void printItems();
     string getStatus();
+    void setStatus(string);
     void addTriggers(vector<Trigger> *);
     
 private:

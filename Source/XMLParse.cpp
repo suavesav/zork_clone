@@ -21,7 +21,7 @@ XMLParse::XMLParse(istream &ifile)
     xmlDocument.parse<0>(&buffer[0]);
     
     rootNode = xmlDocument.first_node();
-    cout << "Name of my first node is: " << rootNode->name() << "\n";
+    //cout << "Name of my first node is: " << rootNode->name() << "\n";
 }
 
 

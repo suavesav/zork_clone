@@ -42,22 +42,23 @@ Trigger::Trigger(xml_node<> * root_node)
                 string att = nextNode->name();
                 if(att == "has")
                 {
-                    if(strcmp(nextNode->value(), "no"))
+                    //cout << (strcmp(nextNode->value(), "no") ? "match" : "nomatch") << "\n";
+                    if(strcmp(nextNode->value(), "no") == 0)
                         tc.has=0;
                     else
                         tc.has = 1;
                 }
                 else if(att == "object")
                 {
-                    tc.object = pNode->value();
+                    tc.object = nextNode->value();
                 }
                 else if(att == "owner")
                 {
-                    tc.owner = pNode->value();
+                    tc.owner = nextNode->value();
                 }
                 else if(att == "status")
                 {
-                    tc.status = pNode->value();
+                    tc.status = nextNode->value();
                 }
                 nextNode = nextNode->next_sibling();
             }
@@ -102,6 +103,11 @@ void Trigger::setActivated(bool b)
     activated = b;
 }
 
+
+void Trigger::printTrigger()
+{
+    cout<< "Command: " << triggerCommand << "\nType: " << type << "\n Condition: \thas " << tc.has << "\n\tobject " << tc.object<< "\n\towner " << tc.owner << "\n\tstatus " << tc.status << "\nAction: " << action<<"\n";
+}
 //bool Trigger::parseTrigger(Trigger T, string s)
 //{
 //    activated = 0;

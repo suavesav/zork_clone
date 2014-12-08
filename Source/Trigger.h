@@ -38,6 +38,7 @@ public:
     string getTriggerPrint();
     bool getActivated();
     void setActivated(bool);
+    void printTrigger();
     //bool parseTrigger(Trigger, string);
     
 private:

@@ -85,3 +85,8 @@ void Item::setCanTurnOn(bool b)
 {
     canTurnOn = b;
 }
+
+string Item::getStatus()
+{
+    return status;
+}

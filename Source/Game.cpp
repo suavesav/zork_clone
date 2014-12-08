@@ -23,6 +23,7 @@ Game::Game(Map m)
 
 void Game::gameLoop()
 {
+    bool triggered = 0;
     int success = 0;
     string command;
     room = &map.rooms.find(player.getCurrRoom())->second;
@@ -34,6 +35,7 @@ void Game::gameLoop()
         room->printDescription();
         
         checkTriggers();
+        triggered = parseTrigger("");
         getline(cin, command);
         checkTriggers();
         success = parseInput(command);
@@ -43,130 +45,136 @@ void Game::gameLoop()
 
 int Game::parseInput(string command)
 {
+    bool triggered = 0;
     int success = 1;
     string word1, word2, word3, word4;
     stringstream(command) >> word1 >> word2 >> word3 >> word4;
-//    success = 0;
+    triggered = parseTrigger(word1);
     
-    if(word1 == "n" || word1 == "s" ||word1 == "e" ||word1 == "w")
+    cout << "Triggered: " << triggered << "\n";
+    
+    if(!triggered)
     {
-        if(word1 == "n")
-            word1 = "north";
-        else if(word1 == "s")
-            word1 = "south";
-        else if(word1 == "e")
-            word1 = "east";
-        else if(word1 == "w")
-            word1 = "west";
-        
-        string inThatDirection =room->roomInDirection(word1);
-        if(inThatDirection != "Can't go that way")
-            player.setCurrRoom(inThatDirection);
-        else
-            cout << inThatDirection << "\n";
-    }
-    else if(word1 == "i")
-    {
-        player.showInventory();
-    }
-    else if(word1 == "take")
-    {
-        //room.printItems();
-        if(room->itemInRoom(word2) != -1)
+        if(word1 == "n" || word1 == "s" ||word1 == "e" ||word1 == "w")
         {
-            player.addInventory(word2);
-            room->delItem(word2);
-            cout << "Item " << word2 << " added to inventory.\n";
-        }
-        else
-        {
-            bool gotItem = 0;
-            for(auto it = map.containers.begin(); it != map.containers.end(); it++)
-            {
-                Container *c = &it->second;
-                if(c->itemInContainer(word2))
-                {
-                    player.addInventory(word2);
-                    c->delItem(word2);
-                    cout << "Item " << word2 << " added to inventory.\n";
-                    gotItem = 1;
-                }
-            }
-            if(!gotItem)
-                cout << "No such item in room or containers\n";
-        }
-    }
-    else if(command == "open exit")
-    {
-        gameOver = 1;
-        success = 1;
-    }
-    else if(word1 == "open")
-    {
-        if(room->containerInRoom(word2) != -1)
-        {
-            Container *c = &map.containers.find(word2)->second;
-            if(c->getStatus() == "" || c->getStatus() == "unlocked")
-                c->printItems();
-        }
-    }
-    else if(word1 == "read")
-    {
-        if(player.findItem(word2) != -1)
-        {
-            string wr = map.readItem(word2);
-            if(wr != "")
-                cout << wr << "\n";
+            if(word1 == "n")
+                word1 = "north";
+            else if(word1 == "s")
+                word1 = "south";
+            else if(word1 == "e")
+                word1 = "east";
+            else if(word1 == "w")
+                word1 = "west";
+            
+            string inThatDirection =room->roomInDirection(word1);
+            if(inThatDirection != "Can't go that way")
+                player.setCurrRoom(inThatDirection);
             else
-                cout << "Nothing written." << "\n";
+                cout << inThatDirection << "\n";
         }
-        else
-            cout << "No such item in your inventory.\n";
-    }
-    else if(word1 == "drop")
-    {
-        if(player.findItem(word2) != -1)
+        else if(word1 == "i")
         {
-            player.delInventory(word2);
-            room->addItem(word2);
-            cout << word2 << " dropped.\n";
+            player.showInventory();
         }
-        else
-            cout << "Error \n";
-    }
-    else if(word1 == "put")
-    {
-        if(player.findItem(word2) != -1)
+        else if(word1 == "take")
         {
-            if(room->containerInRoom(word4) != -1)
+            //room.printItems();
+            if(room->itemInRoom(word2) != -1)
+            {
+                player.addInventory(word2);
+                room->delItem(word2);
+                cout << "Item " << word2 << " added to inventory.\n";
+            }
+            else
+            {
+                bool gotItem = 0;
+                for(auto it = map.containers.begin(); it != map.containers.end(); it++)
+                {
+                    Container *c = &it->second;
+                    if(c->itemInContainer(word2))
+                    {
+                        player.addInventory(word2);
+                        c->delItem(word2);
+                        cout << "Item " << word2 << " added to inventory.\n";
+                        gotItem = 1;
+                    }
+                }
+                if(!gotItem)
+                    cout << "No such item in room or containers\n";
+            }
+        }
+        else if(command == "open exit")
+        {
+            gameOver = 1;
+            success = 1;
+        }
+        else if(word1 == "open")
+        {
+            if(room->containerInRoom(word2) != -1)
             {
                 Container *c = &map.containers.find(word2)->second;
-                c->addItem(word2);
-                player.delInventory(word2);
+                if(c->getStatus() == "" || c->getStatus() == "unlocked")
+                    c->printItems();
             }
         }
-    }
-    else if(word1 == "turn" && word2 == "on")
-    {
-        if(player.findItem(word3) != -1)
+        else if(word1 == "read")
         {
-            Item *i = &map.items.find(word3)->second;
-            if(i->getCanTurnOn())
+            if(player.findItem(word2) != -1)
             {
-                string iword1, iword2, iword3, iword4;
-                stringstream(i->getAction()) >> iword1 >> iword2 >> iword3 >> iword4;
-                i->setStatus(iword4);
-                cout << i->getTurnOnPrint() << "\n";
-                i->setCanTurnOn(0);
+                string wr = map.readItem(word2);
+                if(wr != "")
+                    cout << wr << "\n";
+                else
+                    cout << "Nothing written." << "\n";
+            }
+            else
+                cout << "No such item in your inventory.\n";
+        }
+        else if(word1 == "drop")
+        {
+            if(player.findItem(word2) != -1)
+            {
+                player.delInventory(word2);
+                room->addItem(word2);
+                cout << word2 << " dropped.\n";
+            }
+            else
+                cout << "Error \n";
+        }
+        else if(word1 == "put")
+        {
+            if(player.findItem(word2) != -1)
+            {
+                if(room->containerInRoom(word4) != -1)
+                {
+                    Container *c = &map.containers.find(word2)->second;
+                    c->addItem(word2);
+                    player.delInventory(word2);
+                }
             }
         }
-    }
-    else if(word1 == "attack" && word3 == "with")
-    {}
-    else
-    {
-        cout << "Error\n";
-        success = 0;
+        else if(word1 == "turn" && word2 == "on")
+        {
+            if(player.findItem(word3) != -1)
+            {
+                Item *i = &map.items.find(word3)->second;
+                if(i->getCanTurnOn())
+                {
+                    string iword1, iword2, iword3, iword4;
+                    stringstream(i->getAction()) >> iword1 >> iword2 >> iword3 >> iword4;
+                    i->setStatus(iword4);
+                    cout << i->getTurnOnPrint() << "\n";
+                    i->setCanTurnOn(0);
+                }
+            }
+        }
+        else if(word1 == "attack" && word3 == "with")
+        {}
+        else
+        {
+            cout << "Error\n";
+            success = 0;
+        }
     }
     return success;
 }
@@ -191,27 +199,35 @@ void Game::checkTriggers()
             c->addTriggers(&currentTriggers);
         }
     }
+    //cout << "size of current triggers: " << currentTriggers.size() << "\n";
 }
 
-void Game::parseTrigger(string command)
+bool Game::parseTrigger(string command)
 {
+    bool act = 0;
+    //cout << "Parsing trigger\n";
     for(int counter = 0; counter<currentTriggers.size(); counter++)
     {
         Trigger T = currentTriggers.at(counter);
-        if(T.getActivated() && T.getType() == "Permanent")
+        if(T.getActivated() && T.getType() == "permanent")
             T.setActivated(0);
         if(T.getActivated() == 0)
         {
             if(T.getTriggerCommand() == "" || T.getTriggerCommand() == command)
             {
-                
+                //T.printTrigger();
+                //cout << "Owner: " << T.getCondition().owner << "\n";
                 if(T.getCondition().owner != "")
-                    checkOwner(T);
+                {
+                    checkOwner(&T);
+                    act = T.getActivated();
+                }
                 else if(T.getCondition().status != "")
-                    checkStatus(T);
+                    checkStatus(&T);
             }
         }
     }
+    return act;
 }
 
 void Game::update(string att, string val)
@@ -219,58 +235,87 @@ void Game::update(string att, string val)
     
 }
 
-void Game::checkOwner(Trigger T)
+void Game::checkOwner(Trigger * T)
 {
-    if(T.getCondition().owner == "inventory")
+    string obj = T->getCondition().object;
+    bool h = T->getCondition().has;
+    if(T->getCondition().owner == "inventory")
     {
-        if((player.findItem(T.getCondition().object)!=-1 && T.getCondition().has) || (player.findItem(T.getCondition().object)==-1 && !T.getCondition().has))
+        cout << "has found" << h << player.findItem(obj) << "\n";
+        if((player.findItem(obj)!=-1 && h) || (player.findItem(obj)==-1 && !h))
         {
-            T.setActivated(1);
-            if(T.getTriggerPrint() != "")
-                cout << T.getTriggerPrint() << "\n";
-            if(T.getAction() != "")
-                parseAction(T.getAction());
+            cout << "Setting activated\n";
+            T->setActivated(1);
+            if(T->getTriggerPrint() != "")
+                cout << T->getTriggerPrint() << "\n";
+            if(T->getAction() != "")
+                parseAction(T->getAction());
         }
     }
-    else if((room->itemInRoom(T.getCondition().object) != -1 &&T.getCondition().has) || (room->itemInRoom(T.getCondition().object)==-1 && !T.getCondition().has))
+    else if((room->itemInRoom(obj) != -1 && h) || (room->itemInRoom(obj)==-1 && !h))
     {
-        T.setActivated(1);
-        if(T.getTriggerPrint() != "")
-            cout << T.getTriggerPrint() << "\n";
-        if(T.getAction() != "")
-            parseAction(T.getAction());
+        T->setActivated(1);
+        if(T->getTriggerPrint() != "")
+            cout << T->getTriggerPrint() << "\n";
+        if(T->getAction() != "")
+            parseAction(T->getAction());
     }
     else
     {
         for(int counter = 0; counter < room->getContainers().size(); counter++)
         {
-            if(T.getCondition().owner == room->getContainers().at(counter))
+            if(T->getCondition().owner == room->getContainers().at(counter))
             {
                 Container * c = &map.containers.find(room->getContainers().at(counter))->second;
-                if((c->itemInContainer(T.getCondition().object)!=-1 && T.getCondition().has) || (c->itemInContainer(T.getCondition().object)==-1 && !T.getCondition().has))
+                if((c->itemInContainer(obj)!=-1 && h) || (c->itemInContainer(obj)==-1 && !h))
                 {
-                    T.setActivated(1);
-                    if(T.getTriggerPrint() != "")
-                        cout << T.getTriggerPrint() << "\n";
-                    if(T.getAction() != "")
-                        parseAction(T.getAction());
+                    T->setActivated(1);
+                    if(T->getTriggerPrint() != "")
+                        cout << T->getTriggerPrint() << "\n";
+                    if(T->getAction() != "")
+                        parseAction(T->getAction());
                 }
             }
         }
     }
 }
 
-void Game::checkStatus(Trigger T)
+void Game::checkStatus(Trigger * T)
 {
-//    bool notFound = 1;
-//    string obj = T.getCondition().object;
-//    string stat = T.getCondition().status;
+    string obj = T->getCondition().object;
+    string stat = T->getCondition().status;
     
     //search the entire map for something that matches obj and check to see if its status matches stat
-//    while(notFound)
-//    {
-//        for(int counter = 0; counter < map)
-//    }
+    for(auto it = map.items.begin(); it != map.items.end(); it++)
+    {
+        if(it->first == obj)
+        {
+            Item *i = &it->second;
+            if(i->getStatus() == stat)
+            {
+                T->setActivated(1);
+                if(T->getTriggerPrint() != "")
+                    cout << T->getTriggerPrint() << "\n";
+                if(T->getAction() != "")
+                    parseAction(T->getAction());
+            }
+        }
+    }
+    for(auto it = map.containers.begin(); it!=map.containers.end(); it++)
+    {
+        if(it->first == obj)
+        {
+            Container *c = &it->second;
+            if(c->getStatus() == stat)
+            {
+                T->setActivated(1);
+                if(T->getTriggerPrint() != "")
+                    cout << T->getTriggerPrint() << "\n";
+                if(T->getAction() != "")
+                    parseAction(T->getAction());
+            }
+        }
+    }
 }
 
 void Game::parseAction(string s)

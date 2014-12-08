@@ -37,6 +37,7 @@ public:
     string getName();
     void addTriggers(vector<Trigger> *);
     
+    
 private:
     string name;
     int health;

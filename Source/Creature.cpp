@@ -80,3 +80,4 @@ void Creature::addTriggers(vector<Trigger> * t)
         t->push_back(triggers.at(counter));
     }
 }
+

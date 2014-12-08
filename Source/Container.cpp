@@ -110,3 +110,8 @@ void Container::addTriggers(vector<Trigger> * t)
         t->push_back(triggers.at(counter));
     }
 }
+
+void Container::setStatus(string s)
+{
+    status = s;
+}

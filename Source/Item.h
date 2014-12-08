@@ -34,6 +34,7 @@ public:
     string getAction();
     string getTurnOnPrint();
     void setStatus(string s);
+    string getStatus();
     
 private:
     string name;
