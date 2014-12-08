@@ -41,7 +41,7 @@ private:
     Player player;
     bool gameOver;
     Room *room;
-    vector<Trigger> currentTriggers;
+    vector<Trigger *> currentTriggers;
     
 };
 

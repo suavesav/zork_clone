@@ -73,11 +73,11 @@ string Creature::getName()
     return name;
 }
 
-void Creature::addTriggers(vector<Trigger> * t)
+void Creature::addTriggers(vector<Trigger *> * t)
 {
     for(int counter = 0; counter < triggers.size(); counter++)
     {
-        t->push_back(triggers.at(counter));
+        t->push_back(&triggers.at(counter));
     }
 }
 

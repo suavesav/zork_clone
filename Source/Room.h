@@ -43,7 +43,7 @@ public:
     void addItem(string);
     void printItems();
     string roomInDirection(string);
-    void addTriggers(vector<Trigger> *);
+    void addTriggers(vector<Trigger *> *);
     vector<string> getContainers();
     vector<string> getCreatures();
     

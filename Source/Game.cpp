@@ -51,7 +51,7 @@ int Game::parseInput(string command)
     stringstream(command) >> word1 >> word2 >> word3 >> word4;
     triggered = parseTrigger(word1);
     
-    cout << "Triggered: " << triggered << "\n";
+    //cout << "Triggered: " << triggered << "\n";
     
     if(!triggered)
     {
@@ -78,12 +78,12 @@ int Game::parseInput(string command)
         }
         else if(word1 == "take")
         {
-            //room.printItems();
+            room->printItems();
             if(room->itemInRoom(word2) != -1)
             {
                 player.addInventory(word2);
                 room->delItem(word2);
-                cout << "Item " << word2 << " added to inventory.\n";
+                cout << "Item " << word2 << " added to inventory from room.\n";
             }
             else
             {
@@ -91,11 +91,11 @@ int Game::parseInput(string command)
                 for(auto it = map.containers.begin(); it != map.containers.end(); it++)
                 {
                     Container *c = &it->second;
-                    if(c->itemInContainer(word2))
+                    if(c->itemInContainer(word2) != -1)
                     {
                         player.addInventory(word2);
                         c->delItem(word2);
-                        cout << "Item " << word2 << " added to inventory.\n";
+                        cout << "Item " << word2 << " added to inventory from container.\n";
                         gotItem = 1;
                     }
                 }
@@ -208,23 +208,21 @@ bool Game::parseTrigger(string command)
     //cout << "Parsing trigger\n";
     for(int counter = 0; counter<currentTriggers.size(); counter++)
     {
-        Trigger T = currentTriggers.at(counter);
-        if(T.getActivated() && T.getType() == "permanent")
-            T.setActivated(0);
-        if(T.getActivated() == 0)
+        Trigger * T = currentTriggers.at(counter);
+        if(T->getActivated() && T->getType() == "permanent")
+            T->setActivated(0);
+        if(T->getActivated() == 0)
         {
-            if(T.getTriggerCommand() == "" || T.getTriggerCommand() == command)
+            if(T->getTriggerCommand() == "" || T->getTriggerCommand() == command)
             {
                 //T.printTrigger();
                 //cout << "Owner: " << T.getCondition().owner << "\n";
-                if(T.getCondition().owner != "")
-                {
-                    checkOwner(&T);
-                    act = T.getActivated();
-                }
-                else if(T.getCondition().status != "")
-                    checkStatus(&T);
+                if(T->getCondition().owner != "")
+                    checkOwner(T);
+                else if(T->getCondition().status != "")
+                    checkStatus(T);
             }
+            act = act || T->getActivated();
         }
     }
     return act;

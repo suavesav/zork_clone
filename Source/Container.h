@@ -29,7 +29,7 @@ public:
     void printItems();
     string getStatus();
     void setStatus(string);
-    void addTriggers(vector<Trigger> *);
+    void addTriggers(vector<Trigger *> *);
     
 private:
     string name;

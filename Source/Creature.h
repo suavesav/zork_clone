@@ -35,7 +35,7 @@ public:
     Creature(XMLParse *, xml_node<> *);
     
     string getName();
-    void addTriggers(vector<Trigger> *);
+    void addTriggers(vector<Trigger *> *);
     
     
 private:
