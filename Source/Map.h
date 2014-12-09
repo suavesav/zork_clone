@@ -32,6 +32,9 @@ public:
     string readItem(string s);
     void delItem(string);
     void addItem(string);
+    bool putItemInContainer(string, string);
+    void delCreature(string);
+    void delContainer(string);
     unordered_map<string, Room> rooms;
     unordered_map<string, Item> items;
     unordered_map<string, Creature> creatures;

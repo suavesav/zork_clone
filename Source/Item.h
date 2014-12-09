@@ -36,6 +36,8 @@ public:
     string getTurnOnPrint();
     void setStatus(string s);
     string getStatus();
+    bool getTurnedOn();
+    void setTurnedOn(bool b);
     
 private:
     string name;
@@ -44,6 +46,7 @@ private:
     string writing;
     TurnOn turnon;
     bool canTurnOn;
+    bool turnedOn;
     //string owner;
 };
 

@@ -74,3 +74,24 @@ void Map::delItem(string s)
 {
     items.erase(s);
 }
+
+bool Map::putItemInContainer(string i, string c)
+{
+    bool p = 0;
+    if(containers.find(c)->first == c)
+    {
+        Container *con = &containers.find(c)->second;
+        p = con->addItem(i);
+    }
+    return p;
+}
+
+void Map::delCreature(string s)
+{
+    creatures.erase(s);
+}
+
+void Map::delContainer(string s)
+{
+    containers.erase(s);
+}

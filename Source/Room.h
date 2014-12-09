@@ -49,6 +49,8 @@ public:
     int creatureInRoom(string);
     void setStatus(string);
     string getType();
+    void delCreature(string s);
+    void delContainer(string s);
     
 private:
     bool inRoom;

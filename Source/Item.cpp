@@ -19,6 +19,7 @@ Item::Item(string n)
 
 Item::Item(XMLParse *xml, xml_node<> *rootNode)
 {
+    turnedOn = 0;
     canTurnOn = 0;
 //    printf("Calling the Item Constructor\n");
     xml_node<> *pNode = rootNode->first_node();
@@ -95,4 +96,14 @@ void Item::setCanTurnOn(bool b)
 string Item::getStatus()
 {
     return status;
+}
+
+void Item::setTurnedOn(bool b)
+{
+    turnedOn = b;
+}
+
+bool Item::getTurnedOn()
+{
+    return turnedOn;
 }

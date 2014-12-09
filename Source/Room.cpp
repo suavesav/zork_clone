@@ -140,8 +140,11 @@ void Room::printItems()
 //Checks if the player can go in a certain direction
 string Room::roomInDirection(string dir)
 {
+//    cout << dir << name << endl;
     for(int location = 0; location < borders.size(); location++)
     {
+//        cout << "BORDERS\n";
+//        cout << borders.at(location).direction << " " << borders.at(location).name << endl;
         if(borders.at(location).direction == dir)
         {
             return borders.at(location).name;
@@ -186,4 +189,16 @@ void Room::setStatus(string s)
 string Room::getType()
 {
     return type;
+}
+
+void Room::delCreature(string s)
+{
+    if(creatureInRoom(s)!=-1)
+        creatures.erase(creatures.begin() + creatureInRoom(s));
+}
+
+void Room::delContainer(string s)
+{
+    if(containerInRoom(s) != -1)
+        containers.erase(containers.begin() + containerInRoom(s));
 }

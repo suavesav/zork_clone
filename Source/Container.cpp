@@ -58,18 +58,30 @@ int Container::itemInContainer(string s)
 
 //Add an item to the container's inventory
 //If has accept add only if acceptable
-void Container::addItem(string s)
+bool Container::addItem(string s)
 {
-//    if(accept.size() == 0)
-    container_items.push_back(s);
-//    else
-//    {
-//        for(int l = 0; l < accept.size(); l++)
-//        {
-//            if(accept.at(l) == s)
-//                container_items.push_back(s);
-//        }
-//    }
+    bool putted = 0;
+    if(accept.size() == 0)
+    {
+        container_items.push_back(s);
+        putted = 1;
+    }
+    else
+    {
+        for(int l = 0; l < accept.size(); l++)
+        {
+            if(accept.at(l) == s)
+            {
+                container_items.push_back(s);
+                putted = 1;
+            }
+        }
+    }
+    if(!putted)
+    {
+        cout << "Can't put that there\n";
+    }
+    return putted;
 }
 
 //Remove an item from the container's inventory

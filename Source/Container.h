@@ -25,7 +25,7 @@ public:
     string getName();
     int itemInContainer(string);
     void delItem(string);
-    void addItem(string);
+    bool addItem(string);
     void printItems();
     string getStatus();
     void setStatus(string);

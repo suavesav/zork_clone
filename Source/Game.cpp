@@ -67,6 +67,7 @@ int Game::parseInput(string command)
                 word1 = "west";
             
             string inThatDirection =room->roomInDirection(word1);
+//            cout << room->getName() << "\n";
             if(inThatDirection != "Can't go that way")
                 player.setCurrRoom(inThatDirection);
             else
@@ -83,7 +84,7 @@ int Game::parseInput(string command)
             {
                 player.addInventory(word2);
                 room->delItem(word2);
-                cout << "Item " << word2 << " added to inventory from room.\n";
+                cout << "Item " << word2 << " added to inventory.\n";
             }
             else
             {
@@ -95,7 +96,7 @@ int Game::parseInput(string command)
                     {
                         player.addInventory(word2);
                         c->delItem(word2);
-                        cout << "Item " << word2 << " added to inventory from container.\n";
+                        cout << "Item " << word2 << " added to inventory.\n";
                         gotItem = 1;
                     }
                 }
@@ -111,6 +112,10 @@ int Game::parseInput(string command)
                 success = 1;
                 cout << "Game Over\n";
             }
+            else
+            {
+                cout << "Not at exit...keep looking.\n";
+            }
         }
         else if(word1 == "open")
         {
@@ -119,6 +124,10 @@ int Game::parseInput(string command)
                 Container *c = &map.containers.find(word2)->second;
                 if(c->getStatus() == "" || c->getStatus() == "unlocked")
                     c->printItems();
+            }
+            else
+            {
+                cout << "Error\n";
             }
         }
         else if(word1 == "read")
@@ -151,10 +160,20 @@ int Game::parseInput(string command)
             {
                 if(room->containerInRoom(word4) != -1)
                 {
-                    Container *c = &map.containers.find(word2)->second;
-                    c->addItem(word2);
-                    player.delInventory(word2);
+                    bool putted = map.putItemInContainer(word2, word4);
+//                    Container c = map.containers.find(word2)->second;
+//                    c.addItem(word2);
+                    if(putted)
+                        player.delInventory(word2);
                 }
+                else
+                {
+                    cout << "Error" << "\n";
+                }
+            }
+            else
+            {
+                cout << "Error\n";
             }
         }
         else if(word1 == "turn" && word2 == "on")
@@ -167,9 +186,20 @@ int Game::parseInput(string command)
                     string iword1, iword2, iword3, iword4;
                     stringstream(i->getAction()) >> iword1 >> iword2 >> iword3 >> iword4;
                     i->setStatus(iword4);
+                    cout << "You activate the " << word3 << "\n";
                     cout << i->getTurnOnPrint() << "\n";
                     i->setCanTurnOn(0);
+                    i->setTurnedOn(1);
                 }
+                else if(i->getTurnedOn())
+                {
+                    cout << "You activate the " << word3 << "\n";
+                    cout << i->getTurnOnPrint() << "\n";
+                }
+            }
+            else
+            {
+                cout << "Item " << word3 << " not in inventory.";
             }
         }
         else if(word1 == "attack" && word3 == "with")
@@ -271,10 +301,10 @@ void Game::checkOwner(Trigger * T)
     bool h = T->getCondition().has;
     if(T->getCondition().owner == "inventory")
     {
-        cout << "has found" << h << player.findItem(obj) << "\n";
+        //cout << "has found" << h << player.findItem(obj) << "\n";
         if((player.findItem(obj)!=-1 && h) || (player.findItem(obj)==-1 && !h))
         {
-            cout << "Setting activated\n";
+            //cout << "Setting activated\n";
             T->setActivated(1);
             if(T->getTriggerPrint() != "")
                 cout << T->getTriggerPrint() << "\n";
@@ -348,14 +378,10 @@ void Game::checkStatus(Trigger * T)
     }
 }
 
-//void Game::checkStatus(Creature * c)
-//{
-//    
-//}
 
 void Game::parseAction(string action)
 {
-    cout << action << endl;
+//    cout << action << endl;
     string aword1, aword2, aword3, aword4;
     stringstream(action) >> aword1 >> aword2 >> aword3 >> aword4;
     if(aword1 == "Add")
@@ -381,17 +407,8 @@ void Game::parseAction(string action)
     }
     else if(aword1 == "Delete")
     {
-//        for(auto it = map.creatures.begin(); it != map.creatures.end(); it++)
-//        {
-//            cout << it->first << endl;
-//            if(it->first == aword2)
-//                map.creatures.erase(aword2);
-//        }
-//        for(auto it = map.items.begin(); it != map.items.end(); it++)
-//        {
-//            if(it->first == aword2)
-//                map.items.erase(aword2);
-//        }
+        room->delCreature(aword2);
+        room->delContainer(aword2);
     }
     else if(aword1 == "Update")
     {
@@ -419,7 +436,5 @@ void Game::parseAction(string action)
                 r->setStatus(aword4);
             }
         }
-
-
     }
 }
