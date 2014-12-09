@@ -44,7 +44,7 @@ public:
     
 private:
     string name;
-    int health;
+    //int health;
     string status;
     string description;
     vector<string> vulnerability;
