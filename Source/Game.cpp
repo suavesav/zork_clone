@@ -109,7 +109,7 @@ int Game::parseInput(string command)
                 for(auto it = map.containers.begin(); it != map.containers.end(); it++)
                 {
                     Container *c = &it->second;
-                    if(c->itemInContainer(word2) != -1)
+                    if(c->itemInContainer(word2) != -1 && c->getIsOpen())
                     {
                         player.addInventory(word2);
                         c->delItem(word2);
@@ -118,7 +118,7 @@ int Game::parseInput(string command)
                     }
                 }
                 if(!gotItem)
-                    cout << "No such item in room or containers\n";
+                    cout << "Error\n";
             }
         }
         else if(command == "open exit")
@@ -139,6 +139,7 @@ int Game::parseInput(string command)
             if(room->containerInRoom(word2) != -1)
             {
                 Container *c = &map.containers.find(word2)->second;
+		c->setIsOpen(1);
                 if(c->getStatus() == "" || c->getStatus() == "unlocked")
                     c->printItems();
             }
@@ -158,7 +159,7 @@ int Game::parseInput(string command)
                     cout << "Nothing written." << "\n";
             }
             else
-                cout << "No such item in your inventory.\n";
+                cout << "Error\n";
         }
         else if(word1 == "drop")
         {
@@ -236,7 +237,7 @@ int Game::parseInput(string command)
             }
             else
             {
-                cout << "Item " << word3 << " not in inventory.";
+                cout << "Error: Item " << word3 << " not in inventory.\n";
             }
         }
         else if(word1 == "attack" && word3 == "with")

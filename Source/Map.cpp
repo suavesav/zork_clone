@@ -20,6 +20,7 @@ Map::Map(XMLParse *xml)
     while(pNode != 0)
     {
         string node = pNode->name();
+	cout << node << "\n";
         if(node=="room")
         {
 //            cout << "Room \n";
@@ -50,6 +51,7 @@ Map::Map(XMLParse *xml)
             creatures.insert(make_pair(creature.getName(), creature));
         }
         pNode = pNode->next_sibling();
+	cout << "Map Pnode Address:" << pNode<<"\n";
     }
 }
 

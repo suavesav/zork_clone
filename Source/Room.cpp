@@ -21,7 +21,7 @@ Room::Room(XMLParse *xml, xml_node<> *rootNode)
     while(pNode != 0)
     {
         string node = pNode->name();
-//        cout << node << "\n";
+        cout << node << "\n";
         if(node == "name")
             name = pNode->value();
         else if(node == "description")
@@ -40,17 +40,21 @@ Room::Room(XMLParse *xml, xml_node<> *rootNode)
         {
             Border b;
             xml_node<> *cNode = pNode->first_node();
-            string n =cNode->name();
-            if(n == "direction")
-            {
-                b.direction = cNode->value();
-                b.name = cNode->next_sibling()->value();
-            }
-            else
-            {
-                b.name = cNode->value();
-                b.direction = cNode->next_sibling()->value();
-            }
+	    while(cNode != 0)
+	    {
+                string n = cNode->name();
+	        cout << n <<"\n";
+                if(n == "direction")
+		{
+                    b.direction = cNode->value();
+		}
+                else if(n == "name")
+		{
+                    b.name = cNode->value();
+		}
+		
+	        cNode = cNode->next_sibling();
+	    }
             borders.push_back(b);
         }
         else if(node == "trigger")
@@ -59,6 +63,7 @@ Room::Room(XMLParse *xml, xml_node<> *rootNode)
             triggers.push_back(T);
         }
         pNode = pNode->next_sibling();
+	cout<< "Room pNode Address: " << pNode << "\n";
     }
 }
 

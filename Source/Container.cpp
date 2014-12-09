@@ -14,6 +14,7 @@ Container::Container()
 Container::Container(XMLParse *xml, xml_node<> *rootNode)
 {
 //    printf("Calling the Container Constructor\n");
+    isOpen = 0;
     xml_node<> *pNode = rootNode->first_node();
     while(pNode != 0)
     {
@@ -126,4 +127,14 @@ void Container::addTriggers(vector<Trigger *> * t)
 void Container::setStatus(string s)
 {
     status = s;
+}
+
+void Container::setIsOpen(bool b)
+{
+    isOpen = b;
+}
+
+bool Container::getIsOpen()
+{
+    return isOpen;
 }

@@ -30,8 +30,11 @@ public:
     string getStatus();
     void setStatus(string);
     void addTriggers(vector<Trigger *> *);
+    void setIsOpen(bool);
+    bool getIsOpen();
     
 private:
+    bool isOpen;
     string name;
     string status;
     string description;
