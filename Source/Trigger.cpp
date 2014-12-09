@@ -5,7 +5,6 @@
 //  Created by Savinay Nangalia on 12/7/14.
 //  Copyright (c) 2014 Savinay Nangalia. All rights reserved.
 //
-
 #include "Trigger.h"
 
 Trigger::Trigger()
@@ -42,8 +41,9 @@ Trigger::Trigger(xml_node<> * root_node)
                 string att = nextNode->name();
                 if(att == "has")
                 {
+                    string val = nextNode->value();
                     //cout << (strcmp(nextNode->value(), "no") ? "match" : "nomatch") << "\n";
-                    if(strcmp(nextNode->value(), "no") == 0)
+                    if(val == "no")
                         tc.has=0;
                     else
                         tc.has = 1;

@@ -32,7 +32,7 @@ int main(int argc, const char * argv[]) {
     }
 
     //generate the filepath
-    string filepath("/Users/Sav/XCodeProjects/zork_clone/Resources/Games/");
+    string filepath("");
     filepath.append(argv[1]);
     ifstream ifile(filepath);
     

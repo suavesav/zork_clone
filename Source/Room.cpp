@@ -129,7 +129,6 @@ void Room::delItem(string s)
 //Print all the items in the room
 void Room::printItems()
 {
-    cout << "Items in room: ";
     for(int l = 0; l < items.size(); l++)
     {
         cout << items.at(l) << " ";

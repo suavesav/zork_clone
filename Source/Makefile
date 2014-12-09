@@ -1,5 +1,5 @@
 OBJS = main.o XMLParse.o Map.o Game.o Trigger.o Container.o Creature.o Item.o Room.o Player.o
-CC = gcc -std=c++0x
+CC = g++ -std=c++0x
 DEBUG = -g
 CFLAGS = -c $(DEBUG)
 LFLAGS = $(DEBUG)
@@ -39,3 +39,15 @@ Player.o : Player.cpp Player.h
 
 clean:
 	\rm *.o *~ IPA1
+
+test:
+	./IPA1 samples/containersample.xml <samples/containersample.txt >output/containerout
+	diff output/containerout samples/containersample.out
+	./IPA1 samples/creaturesample.xml <samples/creaturesample.txt >output/creatureout
+	diff output/creatureout samples/creaturesample.out
+	./IPA1 samples/itemsample.xml <samples/itemsample.txt >output/itemout
+	diff output/itemout samples/itemsample.out
+	./IPA1 samples/roomsample.xml <samples/roomsample.txt >output/roomout
+	diff output/roomout samples/roomsample.out
+	./IPA1 samples/triggersample.xml <samples/triggersample.txt >output/triggerout
+	diff output/triggerout samples/triggersample.out

@@ -12,7 +12,8 @@
 
 #include <string>
 #include "XMLParse.h"
-
+#include <stdio.h>
+#include <iostream>
 using namespace std;
 
 class XMLParse;

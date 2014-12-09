@@ -181,7 +181,10 @@ int Game::parseInput(string command)
 //                    Container c = map.containers.find(word2)->second;
 //                    c.addItem(word2);
                     if(putted)
+		    {
+		        cout<< "Item " << word2 << " added to " << word4 << endl;
                         player.delInventory(word2);
+		    }
                 }
                 else
                 {
