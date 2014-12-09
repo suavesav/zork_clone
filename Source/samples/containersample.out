@@ -1,0 +1,69 @@
+Room - Entrance
+Inventory: empty
+Error
+Error
+Inventory: empty
+closet contains sword.
+Error
+Item sword added to inventory.
+Nothing written.
+Room - Main
+Error
+Error
+Room - Staircase (exit)
+Error
+Error
+bottle contains note.
+Item note added to inventory.
+You found the exit :-)
+Item sword added to bottle.
+Error
+Error
+bottle contains sword.
+Error
+Error
+bottle contains sword.
+Item sword added to inventory.
+Item sword added to container.
+container contains sword.
+Item sword added to inventory.
+Inventory: note, sword
+Error
+Can't go that way.
+Game Over
+
+
+CONTAINERSAMPLE.TXT
+
+i
+take sword
+read sword
+i
+open closet
+read sword
+take sword
+read sword
+n
+take bottle
+take note
+n
+take note
+read note
+open bottle
+take note
+read note
+put sword in bottle
+put sword in closet
+put sword in container
+open bottle
+open closet
+take note
+open bottle
+take sword
+put sword in container
+open container
+take sword
+i
+take sword
+n
+open exit
