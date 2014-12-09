@@ -48,14 +48,31 @@ int Game::parseInput(string command)
     bool triggered = 0;
     int success = 1;
     string word1, word2, word3, word4;
-    stringstream(command) >> word1 >> word2 >> word3 >> word4;
+    //stringstream(command) >> word1 >> word2 >> word3 >> word4;
+    vector<string> words;
+    string text = command;
+    
+    std::string::size_type beg = 0, end;
+    do {
+        end = text.find(' ', beg);
+        if (end == std::string::npos) {
+            end = text.size();
+        }
+        words.push_back(text.substr(beg, end - beg));
+        beg = end + 1;
+    } while (beg < text.size());
+    word1 = words.at(0);
+    if(words.size()>1) word2 = words.at(1);
+    if(words.size()>2) word3 = words.at(2);
+    if(words.size()>3) word4 = words.at(3);
+    
     triggered = parseTrigger(word1);
     
     //cout << "Triggered: " << triggered << "\n";
     
     if(!triggered)
     {
-        if(word1 == "n" || word1 == "s" ||word1 == "e" ||word1 == "w")
+        if(command == "n" || command == "s" ||command == "e" ||command == "w")
         {
             if(word1 == "n")
                 word1 = "north";
@@ -184,7 +201,24 @@ int Game::parseInput(string command)
                 if(i->getCanTurnOn())
                 {
                     string iword1, iword2, iword3, iword4;
-                    stringstream(i->getAction()) >> iword1 >> iword2 >> iword3 >> iword4;
+//                    stringstream(i->getAction()) >> iword1 >> iword2 >> iword3 >> iword4;
+                    vector<string> words;
+                    string text = i->getAction();
+                    
+                    std::string::size_type beg = 0, end;
+                    do {
+                        end = text.find(' ', beg);
+                        if (end == std::string::npos) {
+                            end = text.size();
+                        }
+                        words.push_back(text.substr(beg, end - beg));
+                        beg = end + 1;
+                    } while (beg < text.size());
+                    if(words.size()>0) iword1 = words.at(0);
+                    if(words.size()>1) iword2 = words.at(1);
+                    if(words.size()>2) iword3 = words.at(2);
+                    if(words.size()>3) iword4 = words.at(3);
+
                     i->setStatus(iword4);
                     cout << "You activate the " << word3 << "\n";
                     cout << i->getTurnOnPrint() << "\n";
@@ -383,7 +417,24 @@ void Game::parseAction(string action)
 {
 //    cout << action << endl;
     string aword1, aword2, aword3, aword4;
-    stringstream(action) >> aword1 >> aword2 >> aword3 >> aword4;
+//    stringstream(action) >> aword1 >> aword2 >> aword3 >> aword4;
+    vector<string> words;
+    string text = action;
+    
+    std::string::size_type beg = 0, end;
+    do {
+        end = text.find(' ', beg);
+        if (end == std::string::npos) {
+            end = text.size();
+        }
+        words.push_back(text.substr(beg, end - beg));
+        beg = end + 1;
+    } while (beg < text.size());
+    if(words.size()>0)aword1 = words.at(0);
+    if(words.size()>1) aword2 = words.at(1);
+    if(words.size()>2) aword3 = words.at(2);
+    if(words.size()>3) aword4 = words.at(3);
+
     if(aword1 == "Add")
     {
         map.addItem(aword2);

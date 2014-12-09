@@ -1,8 +1,8 @@
 OBJS = main.o XMLParse.o Map.o Game.o Trigger.o Container.o Creature.o Item.o Room.o Player.o
-CC = g++ -std=c++11
+CC = gcc -std=c++0x
 DEBUG = -g
-CFLAGS = -Wall -c $(DEBUG)
-LFLAGS = -Wall $(DEBUG)
+CFLAGS = -c $(DEBUG)
+LFLAGS = $(DEBUG)
 
 IPA1 : $(OBJS)
 	$(CC) $(LFLAGS) $(OBJS) -o IPA1
