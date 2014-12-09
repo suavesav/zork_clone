@@ -51,7 +51,11 @@ Map::Map(XMLParse *xml)
             creatures.insert(make_pair(creature.getName(), creature));
         }
         pNode = pNode->next_sibling();
-	cout << "Map Pnode Address:" << pNode<<"\n";
+        cout << "Map Pnode Address:" << pNode<<"\n";
+        if(pNode != 0)
+        {
+            cout << pNode->name() << "\n";
+        }
     }
 }
 
