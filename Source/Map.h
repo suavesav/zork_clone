@@ -30,6 +30,8 @@ public:
     
     string getFirstRoom();
     string readItem(string s);
+    void delItem(string);
+    void addItem(string);
     unordered_map<string, Room> rooms;
     unordered_map<string, Item> items;
     unordered_map<string, Creature> creatures;

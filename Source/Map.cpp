@@ -63,3 +63,14 @@ string Map::readItem(string s)
 {
     return items.find(s)->second.getWriting();
 }
+
+void Map::addItem(string s)
+{
+    Item item(s);
+    items.insert(make_pair(s, item));
+}
+
+void Map::delItem(string s)
+{
+    items.erase(s);
+}

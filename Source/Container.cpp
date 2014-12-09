@@ -84,7 +84,7 @@ void Container::delItem(string s)
 void Container::printItems()
 {
     if(container_items.size() == 0)
-        cout << name << "is empty.";
+        cout << name << " is empty.";
     else
     {
         cout << name << " contains ";

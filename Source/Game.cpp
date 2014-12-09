@@ -78,7 +78,7 @@ int Game::parseInput(string command)
         }
         else if(word1 == "take")
         {
-            room->printItems();
+            //room->printItems();
             if(room->itemInRoom(word2) != -1)
             {
                 player.addInventory(word2);
@@ -105,8 +105,12 @@ int Game::parseInput(string command)
         }
         else if(command == "open exit")
         {
-            gameOver = 1;
-            success = 1;
+            if(room->getType() == "exit")
+            {
+                gameOver = 1;
+                success = 1;
+                cout << "Game Over\n";
+            }
         }
         else if(word1 == "open")
         {
@@ -169,7 +173,35 @@ int Game::parseInput(string command)
             }
         }
         else if(word1 == "attack" && word3 == "with")
-        {}
+        {
+            bool hit = 0;
+            vector<string> actions;
+            for(auto it = map.creatures.begin(); it != map.creatures.end(); it++)
+            {
+                if(it->first == word2 && room->creatureInRoom(word2) != -1)
+                {
+                    Creature *c = &it->second;
+                    if(c->checkVulnerability(word4))
+                    {
+                        if(player.findItem(word4) != -1)
+                        {
+                            hit = c->attackWith(&map.items.find(word4)->second);
+                            if(hit)
+                                actions = c->getAttackAction();
+                        }
+                    }
+                }
+            }
+            if(hit)
+            {
+                player.delInventory(word4);
+                map.delItem(word4);
+                for(int counter = 0; counter <actions.size(); counter++)
+                    parseAction(actions.at(counter));
+            }
+            else if(!hit)
+                cout << "Error\n";
+        }
         else
         {
             cout << "Error\n";
@@ -250,7 +282,7 @@ void Game::checkOwner(Trigger * T)
                 parseAction(T->getAction());
         }
     }
-    else if((room->itemInRoom(obj) != -1 && h) || (room->itemInRoom(obj)==-1 && !h))
+    else if(T->getCondition().owner == room->getName() && ((room->itemInRoom(obj) != -1 && h) || (room->itemInRoom(obj)==-1 && !h)))
     {
         T->setActivated(1);
         if(T->getTriggerPrint() != "")
@@ -316,5 +348,78 @@ void Game::checkStatus(Trigger * T)
     }
 }
 
-void Game::parseAction(string s)
-{}
+//void Game::checkStatus(Creature * c)
+//{
+//    
+//}
+
+void Game::parseAction(string action)
+{
+    cout << action << endl;
+    string aword1, aword2, aword3, aword4;
+    stringstream(action) >> aword1 >> aword2 >> aword3 >> aword4;
+    if(aword1 == "Add")
+    {
+        map.addItem(aword2);
+        for(auto it = map.containers.begin(); it != map.containers.end(); it++)
+        {
+            if(it->first == aword4)
+            {
+                Container *c = &it->second;
+                c->addItem(aword2);
+            }
+        }
+        for(auto it = map.rooms.begin(); it != map.rooms.end(); it++)
+        {
+            if(it->first == aword4)
+            {
+                Room *r = &it->second;
+                r->addItem(aword2);
+            }
+        }
+        room->printItems();
+    }
+    else if(aword1 == "Delete")
+    {
+//        for(auto it = map.creatures.begin(); it != map.creatures.end(); it++)
+//        {
+//            cout << it->first << endl;
+//            if(it->first == aword2)
+//                map.creatures.erase(aword2);
+//        }
+//        for(auto it = map.items.begin(); it != map.items.end(); it++)
+//        {
+//            if(it->first == aword2)
+//                map.items.erase(aword2);
+//        }
+    }
+    else if(aword1 == "Update")
+    {
+        for(auto it = map.containers.begin(); it != map.containers.end(); it++)
+        {
+            if(it->first == aword2)
+            {
+                Container *c = &it->second;
+                c->setStatus(aword4);
+            }
+        }
+        for(auto it = map.items.begin(); it != map.items.end(); it++)
+        {
+            if(it->first == aword2)
+            {
+                Item *i = &it->second;
+                i->setStatus(aword4);
+            }
+        }
+        for(auto it = map.rooms.begin(); it != map.rooms.end(); it++)
+        {
+            if(it->first == aword2)
+            {
+                Room *r = &it->second;
+                r->setStatus(aword4);
+            }
+        }
+
+
+    }
+}

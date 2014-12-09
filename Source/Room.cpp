@@ -167,3 +167,23 @@ vector<string> Room::getCreatures()
 {
     return creatures;
 }
+
+int Room::creatureInRoom(string n)
+{
+    for(int counter = 0; counter < creatures.size(); counter++)
+    {
+        if(creatures.at(counter) == n)
+            return counter;
+    }
+    return -1;
+}
+
+void Room::setStatus(string s)
+{
+    status = s;
+}
+
+string Room::getType()
+{
+    return type;
+}

@@ -46,6 +46,9 @@ public:
     void addTriggers(vector<Trigger *> *);
     vector<string> getContainers();
     vector<string> getCreatures();
+    int creatureInRoom(string);
+    void setStatus(string);
+    string getType();
     
 private:
     bool inRoom;

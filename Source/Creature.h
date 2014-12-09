@@ -10,6 +10,7 @@
 #include <vector>
 #include "Trigger.h"
 #include "XMLParse.h"
+#include "Item.h"
 
 using namespace std;
 #ifndef zork_clone_Creature_h
@@ -36,11 +37,15 @@ public:
     
     string getName();
     void addTriggers(vector<Trigger *> *);
+    bool checkVulnerability(string weapon);
+    bool attackWith(Item *);
+    vector<string> getAttackAction();
     
     
 private:
     string name;
     int health;
+    string status;
     string description;
     vector<string> vulnerability;
     //int hit;

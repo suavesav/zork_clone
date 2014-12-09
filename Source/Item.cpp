@@ -11,6 +11,12 @@
 Item::Item()
 {}
 
+Item::Item(string n)
+{
+    canTurnOn = 0;
+    name = n;
+}
+
 Item::Item(XMLParse *xml, xml_node<> *rootNode)
 {
     canTurnOn = 0;

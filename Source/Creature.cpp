@@ -81,3 +81,29 @@ void Creature::addTriggers(vector<Trigger *> * t)
     }
 }
 
+
+bool Creature::checkVulnerability(string v)
+{
+    for(int counter = 0; counter<vulnerability.size(); counter++)
+    {
+        if(vulnerability.at(counter) == v)
+            return 1;
+    }
+    return 0;
+}
+
+bool Creature::attackWith(Item * i)
+{
+    if(i->getName() == atk.ac.attackObject)
+        if(i->getStatus() == atk.ac.attackStatus)
+        {
+            cout << atk.attackPrint << "\n";
+            return 1;
+        }
+    return 0;
+}
+
+vector<string> Creature::getAttackAction()
+{
+    return atk.action;
+}

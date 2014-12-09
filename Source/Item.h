@@ -25,6 +25,7 @@ class Item
 {
 public:
     Item();
+    Item(string);
     Item(XMLParse *, xml_node<> *);
     
     string getName();
