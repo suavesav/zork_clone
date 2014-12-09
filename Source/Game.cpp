@@ -14,6 +14,7 @@ Game::Game()
 Game::Game(Map m)
 {
 //    cout << "Calling the Game constructor\n";
+    isAction = 0;
     map = m;
     Player P;
     player = P;
@@ -70,8 +71,9 @@ int Game::parseInput(string command)
     
     //cout << "Triggered: " << triggered << "\n";
     
-    if(!triggered)
+    if(!triggered || isAction)
     {
+        isAction = 0;
         if(command == "n" || command == "s" ||command == "e" ||command == "w")
         {
             if(word1 == "n")
@@ -204,26 +206,7 @@ int Game::parseInput(string command)
                 Item *i = &map.items.find(word3)->second;
                 if(i->getCanTurnOn())
                 {
-                    string iword1, iword2, iword3, iword4;
-//                    stringstream(i->getAction()) >> iword1 >> iword2 >> iword3 >> iword4;
-                    vector<string> words;
-                    string text = i->getAction();
-                    
-                    std::string::size_type beg = 0, end;
-                    do {
-                        end = text.find(' ', beg);
-                        if (end == std::string::npos) {
-                            end = text.size();
-                        }
-                        words.push_back(text.substr(beg, end - beg));
-                        beg = end + 1;
-                    } while (beg < text.size());
-                    if(words.size()>0) iword1 = words.at(0);
-                    if(words.size()>1) iword2 = words.at(1);
-                    if(words.size()>2) iword3 = words.at(2);
-                    if(words.size()>3) iword4 = words.at(3);
-
-                    i->setStatus(iword4);
+                    parseAction(i->getAction());
                     cout << "You activate the " << word3 << "\n";
                     cout << i->getTurnOnPrint() << "\n";
                     i->setCanTurnOn(0);
@@ -491,5 +474,10 @@ void Game::parseAction(string action)
                 r->setStatus(aword4);
             }
         }
+    }
+    else
+    {
+        parseInput(action);
+        isAction = 1;
     }
 }

@@ -37,6 +37,7 @@ public:
     void checkStatus(Trigger * T);
     
 private:
+    bool isAction;
     Map map;
     Player player;
     bool gameOver;
