@@ -54,6 +54,7 @@ Room::Room(XMLParse *xml, xml_node<> *rootNode)
 		}
 		
 	        cNode = cNode->next_sibling();
+            cout << "Border cNode Address: " << cNode<<"\n";
 	    }
             borders.push_back(b);
         }
