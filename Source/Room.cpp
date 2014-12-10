@@ -26,6 +26,7 @@ Room::Room(XMLParse *xml, xml_node<> *rootNode)
     while(pNode != 0)
     {
         string node = pNode->name();
+        cout << node << "\n";
         if(node == "name")
             name = pNode->value();
         else if(node == "description")
@@ -48,6 +49,7 @@ Room::Room(XMLParse *xml, xml_node<> *rootNode)
             while(cNode != 0)
             {
                 string n = cNode->name();
+                cout << n <<"\n";
                 if(n == "direction")
                 {
                     d = cNode->value();
