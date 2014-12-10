@@ -58,6 +58,7 @@ Room::Room(XMLParse *xml, xml_node<> *rootNode)
                 cout << "Border cNode Address: " << cNode<<"\n";
             }
             borders.insert(make_pair(d, n));
+            //cout << borders.find(d)->first
         }
         else if(node == "trigger")
         {
@@ -157,7 +158,8 @@ string Room::roomInDirection(string dir)
 //        }
 //    }
     string retval = "";
-    retval = borders.find(dir)->second;
+    if(borders.find(dir)->first == "dir")
+        retval = borders.find(dir)->second;
     return retval;
 //    return "Can't go that way";
 }
