@@ -17,9 +17,9 @@ Map::Map(XMLParse *xml)
 //    printf("Calling the Map Constructor\n");
     gotFirstRoom = 0;
     xml_node<> *pNode = xml->getRootNode()->first_node();
-    cout << "Next Sibling Value:" << pNode->next_sibling() << "\n";
     while(pNode != 0)
     {
+        cout << "Next Sibling Value:" << pNode->next_sibling() << "\n";
         string node = pNode->name();
         cout << node << "\n";
         if(node=="room")
