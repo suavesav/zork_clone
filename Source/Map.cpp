@@ -25,12 +25,14 @@ Map::Map(XMLParse *xml)
         {
 //            cout << "Room \n";
             Room room(xml, pNode);
+            cout << "Creating the room\n";
             rooms.insert(make_pair(room.getName(), room));
             if(!gotFirstRoom)
             {
                 firstRoom = room.getName();
                 gotFirstRoom = 1;
             }
+            cout << "Created the room" << "\n";
         }
         else if(node=="container")
         {
@@ -51,6 +53,7 @@ Map::Map(XMLParse *xml)
             creatures.insert(make_pair(creature.getName(), creature));
         }
         pNode = pNode->next_sibling();
+        cout<< "pNode value:" << pNode << endl;
     }
 }
 
