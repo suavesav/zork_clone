@@ -20,7 +20,7 @@ Map::Map(XMLParse *xml)
     while(pNode != 0)
     {
         string node = pNode->name();
-        cout << node;
+        cout << node << "\n";
         if(node=="room")
         {
 //            cout << "Room \n";
