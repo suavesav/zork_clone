@@ -144,10 +144,14 @@ int Game::parseInput(string command)
         {
             if(room->containerInRoom(word2) != -1)
             {
-                Container *c = &map.containers.find(word2)->second;
-		c->setIsOpen(1);
-                if(c->getStatus() == "" || c->getStatus() == "unlocked")
-                    c->printItems();
+                auto it = map.containers.find(word2);
+                if(it!=map.containers.end())
+                {
+                    Container *c = &it->second;
+                    c->setIsOpen(1);
+                    if(c->getStatus() == "" || c->getStatus() == "unlocked")
+                        c->printItems();
+                }
             }
             else
             {
@@ -207,19 +211,23 @@ int Game::parseInput(string command)
         {
             if(player.findItem(word3) != -1)
             {
-                Item *i = &map.items.find(word3)->second;
-                if(i->getCanTurnOn())
+                auto it = map.items.find(word3);
+                if(it!=map.items.end())
                 {
-                    parseAction(i->getAction());
-                    cout << "You activate the " << word3 << "\n";
-                    cout << i->getTurnOnPrint() << "\n";
-                    i->setCanTurnOn(0);
-                    i->setTurnedOn(1);
-                }
-                else if(i->getTurnedOn())
-                {
-                    cout << "You activate the " << word3 << "\n";
-                    cout << i->getTurnOnPrint() << "\n";
+                    Item *i = &it->second;
+                    if(i->getCanTurnOn())
+                    {
+                        parseAction(i->getAction());
+                        cout << "You activate the " << word3 << "\n";
+                        cout << i->getTurnOnPrint() << "\n";
+                        i->setCanTurnOn(0);
+                        i->setTurnedOn(1);
+                    }
+                    else if(i->getTurnedOn())
+                    {
+                        cout << "You activate the " << word3 << "\n";
+                        cout << i->getTurnOnPrint() << "\n";
+                    }
                 }
             }
             else
@@ -235,14 +243,16 @@ int Game::parseInput(string command)
             {
                 if(it->first == word2 && room->creatureInRoom(word2) != -1)
                 {
-                    Creature *c = &it->second;
-                    if(c->checkVulnerability(word4))
                     {
-                        if(player.findItem(word4) != -1)
+                        Creature *c = &it->second;
+                        if(c->checkVulnerability(word4))
                         {
-                            hit = c->attackWith(&map.items.find(word4)->second);
-                            if(hit)
-                                actions = c->getAttackAction();
+                            if(player.findItem(word4) != -1)
+                            {
+                                hit = c->attackWith(&map.items.find(word4)->second);
+                                if(hit)
+                                    actions = c->getAttackAction();
+                            }
                         }
                     }
                 }
@@ -274,16 +284,24 @@ void Game::checkTriggers()
     {
         for(int counter = 0; counter < room->getCreatures().size(); counter++)
         {
-            Creature *c = &map.creatures.find(room->getCreatures().at(counter))->second;
-            c->addTriggers(&currentTriggers);
+            auto it =map.creatures.find(room->getCreatures().at(counter));
+            if(it!=map.creatures.end())
+            {
+                Creature *c = &it->second;
+                c->addTriggers(&currentTriggers);
+            }
         }
     }
     if(room->getContainers().size()!=0)
     {
         for(int counter = 0; counter < room->getContainers().size(); counter++)
         {
-            Container *c = &map.containers.find(room->getContainers().at(counter))->second;
-            c->addTriggers(&currentTriggers);
+            auto it = map.containers.find(room->getContainers().at(counter));
+            if(it != map.containers.end())
+            {
+                Container *c = &it->second;
+                c->addTriggers(&currentTriggers);
+            }
         }
     }
     //cout << "size of current triggers: " << currentTriggers.size() << "\n";
@@ -351,14 +369,18 @@ void Game::checkOwner(Trigger * T)
         {
             if(T->getCondition().owner == room->getContainers().at(counter))
             {
-                Container * c = &map.containers.find(room->getContainers().at(counter))->second;
-                if((c->itemInContainer(obj)!=-1 && h) || (c->itemInContainer(obj)==-1 && !h))
+                auto it = map.containers.find(room->getContainers().at(counter));
+                if(it != map.containers.end())
                 {
-                    T->setActivated(1);
-                    if(T->getTriggerPrint() != "")
-                        cout << T->getTriggerPrint() << "\n";
-                    if(T->getAction() != "")
-                        parseAction(T->getAction());
+                    Container * c = &it->second;
+                    if((c->itemInContainer(obj)!=-1 && h) || (c->itemInContainer(obj)==-1 && !h))
+                    {
+                        T->setActivated(1);
+                        if(T->getTriggerPrint() != "")
+                            cout << T->getTriggerPrint() << "\n";
+                        if(T->getAction() != "")
+                            parseAction(T->getAction());
+                    }
                 }
             }
         }
