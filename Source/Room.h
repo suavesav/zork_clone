@@ -14,6 +14,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <unordered_map>
 #include "Container.h"
 #include "Item.h"
 #include "Creature.h"
@@ -21,11 +22,11 @@
 
 using namespace std;
 
-struct Border
-{
-    string name;
-    string direction;
-};
+//struct Border
+//{
+//    string name;
+//    string direction;
+//};
 
 class Room
 {
@@ -58,11 +59,12 @@ private:
     string status;
     string type;
     string description;
-    vector<Border> borders;
+    //vector<Border> borders;
     vector<string> containers;
     vector<string> items;
     vector<string> creatures;
     vector<Trigger> triggers;
+    unordered_map<string, string> borders;
 };
 
 #endif

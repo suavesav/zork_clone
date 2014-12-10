@@ -87,10 +87,10 @@ int Game::parseInput(string command)
             
             string inThatDirection =room->roomInDirection(word1);
 //            cout << room->getName() << "\n";
-            if(inThatDirection != "Can't go that way")
+            if(inThatDirection != "")
                 player.setCurrRoom(inThatDirection);
             else
-                cout << inThatDirection << "\n";
+                cout << "Can't go that way" << "\n";
         }
         else if(word1 == "i")
         {

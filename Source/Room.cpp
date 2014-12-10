@@ -38,25 +38,26 @@ Room::Room(XMLParse *xml, xml_node<> *rootNode)
             items.push_back(pNode->value());
         else if(node == "border")
         {
-            Border b;
+            //Border b;
             xml_node<> *cNode = pNode->first_node();
+            string n, d;
             while(cNode != 0)
             {
                 string n = cNode->name();
                 cout << n <<"\n";
                 if(n == "direction")
                 {
-                    b.direction = cNode->value();
+                    d = cNode->value();
                 }
                 else if(n == "name")
                 {
-                    b.name = cNode->value();
+                    n = cNode->value();
                 }
             
                 cNode = cNode->next_sibling();
                 cout << "Border cNode Address: " << cNode<<"\n";
             }
-            borders.push_back(b);
+            borders.insert(make_pair(d, n));
         }
         else if(node == "trigger")
         {
@@ -146,16 +147,19 @@ void Room::printItems()
 string Room::roomInDirection(string dir)
 {
 //    cout << dir << name << endl;
-    for(int location = 0; location < borders.size(); location++)
-    {
-//        cout << "BORDERS\n";
-//        cout << borders.at(location).direction << " " << borders.at(location).name << endl;
-        if(borders.at(location).direction == dir)
-        {
-            return borders.at(location).name;
-        }
-    }
-    return "Can't go that way";
+//    for(int location = 0; location < borders.size(); location++)
+//    {
+////        cout << "BORDERS\n";
+////        cout << borders.at(location).direction << " " << borders.at(location).name << endl;
+//        if(borders.find(location).direction == dir)
+//        {
+//            return borders.at(location).name;
+//        }
+//    }
+    string retval = "";
+    retval = borders.find(dir)->second;
+    return retval;
+//    return "Can't go that way";
 }
 
 void Room::addTriggers(vector<Trigger *> * t)
