@@ -17,6 +17,7 @@ Map::Map(XMLParse *xml)
 //    printf("Calling the Map Constructor\n");
     gotFirstRoom = 0;
     xml_node<> *pNode = xml->getRootNode()->first_node();
+    cout << "Next Sibling Value:" << pNode->next_sibling() << "\n";
     while(pNode != 0)
     {
         string node = pNode->name();
@@ -53,9 +54,12 @@ Map::Map(XMLParse *xml)
             creatures.insert(make_pair(creature.getName(), creature));
         }
         pNode = pNode->next_sibling();
-        cout<< "pNode value:" << pNode << endl;
+        cout<< "New pNode value:" << pNode << endl;
         if(pNode != 0)
-            cout << "Name: " << (pNode)->name() <<"\n";
+        {
+            xml_node<> * anotherNode = pNode;
+            cout << "Name: " << anotherNode->name() <<"\n";
+        }
     }
 }
 
