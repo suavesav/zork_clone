@@ -32,7 +32,11 @@ void Game::gameLoop()
     while(!gameOver)
     {
         if(player.getCurrRoom() != room->getName())
-            room = &map.rooms.find(player.getCurrRoom())->second;
+        {
+            auto it = map.rooms.find(player.getCurrRoom());
+            if(it != map.rooms.end())
+                room = &it->second;
+        }
         room->printDescription();
         
         checkTriggers();
