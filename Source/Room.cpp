@@ -15,6 +15,11 @@ Room::Room()
 
 Room::Room(XMLParse *xml, xml_node<> *rootNode)
 {
+//    borders.insert(make_pair("north", ""));
+//    borders.insert(make_pair("south", ""));
+//    borders.insert(make_pair("east", ""));
+//    borders.insert(make_pair("west", ""));
+    
     inRoom = 0;
 //    printf("Calling the Room Constructor\n");
     xml_node<> *pNode = rootNode->first_node();
@@ -158,8 +163,10 @@ string Room::roomInDirection(string dir)
 //        }
 //    }
     string retval = "";
-    if(borders.find(dir)->first == "dir")
-        retval = borders.find(dir)->second;
+//    cout << borders.find(dir)->first << borders.find(dir)->second << endl;
+    auto it = borders.find(dir);
+    if(it != borders.end())
+        retval = it->second;
     return retval;
 //    return "Can't go that way";
 }
