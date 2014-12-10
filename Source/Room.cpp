@@ -39,7 +39,7 @@ Room::Room(XMLParse *xml, xml_node<> *rootNode)
         else if(node == "border")
         {
             Border b;
-            xml_node<> * cNode = pNode->first_node();
+            xml_node<> *cNode = pNode->first_node();
             while(cNode != 0)
             {
                 string n = cNode->name();
@@ -64,7 +64,7 @@ Room::Room(XMLParse *xml, xml_node<> *rootNode)
             triggers.push_back(T);
         }
         pNode = pNode->next_sibling();
-	cout<< "Room pNode Address: " << pNode << "\n";
+        cout<< "Room pNode Address: " << pNode << "\n";
     }
 }
 
