@@ -54,6 +54,8 @@ Map::Map(XMLParse *xml)
         }
         pNode = pNode->next_sibling();
         cout<< "pNode value:" << pNode << endl;
+        if(pNode != 0)
+            cout << "Name: " <<pNode->name() <<"\n";
     }
 }
 
