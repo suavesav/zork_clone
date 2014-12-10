@@ -26,7 +26,6 @@ Room::Room(XMLParse *xml, xml_node<> *rootNode)
     while(pNode != 0)
     {
         string node = pNode->name();
-        cout << node << "\n";
         if(node == "name")
             name = pNode->value();
         else if(node == "description")
@@ -45,25 +44,23 @@ Room::Room(XMLParse *xml, xml_node<> *rootNode)
         {
             //Border b;
             xml_node<> *cNode = pNode->first_node();
-            string n, d;
+            string bName, d;
             while(cNode != 0)
             {
                 string n = cNode->name();
-                cout << n <<"\n";
                 if(n == "direction")
                 {
                     d = cNode->value();
                 }
                 else if(n == "name")
                 {
-                    n = cNode->value();
+                    bName = cNode->value();
                 }
             
                 cNode = cNode->next_sibling();
-                cout << "Border cNode Address: " << cNode<<"\n";
             }
-            borders.insert(make_pair(d, n));
-            //cout << borders.find(d)->first
+            //Adding Pair
+            borders.insert(make_pair(d,bName));
         }
         else if(node == "trigger")
         {
@@ -71,7 +68,6 @@ Room::Room(XMLParse *xml, xml_node<> *rootNode)
             triggers.push_back(T);
         }
         pNode = pNode->next_sibling();
-        cout<< "Room pNode Address: " << pNode << "\n";
     }
 }
 
@@ -166,7 +162,10 @@ string Room::roomInDirection(string dir)
 //    cout << borders.find(dir)->first << borders.find(dir)->second << endl;
     auto it = borders.find(dir);
     if(it != borders.end())
+    {
+        cout << "first(dir): "<< borders.find(dir)->first << "\nsecond(name): " << borders.find(dir)->second << endl;
         retval = it->second;
+    }
     return retval;
 //    return "Can't go that way";
 }
