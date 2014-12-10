@@ -148,26 +148,13 @@ void Room::printItems()
 //Checks if the player can go in a certain direction
 string Room::roomInDirection(string dir)
 {
-//    cout << dir << name << endl;
-//    for(int location = 0; location < borders.size(); location++)
-//    {
-////        cout << "BORDERS\n";
-////        cout << borders.at(location).direction << " " << borders.at(location).name << endl;
-//        if(borders.find(location).direction == dir)
-//        {
-//            return borders.at(location).name;
-//        }
-//    }
     string retval = "";
-//    cout << borders.find(dir)->first << borders.find(dir)->second << endl;
     auto it = borders.find(dir);
     if(it != borders.end())
     {
-        cout << "first(dir): "<< borders.find(dir)->first << "\nsecond(name): " << borders.find(dir)->second << endl;
         retval = it->second;
     }
     return retval;
-//    return "Can't go that way";
 }
 
 void Room::addTriggers(vector<Trigger *> * t)
