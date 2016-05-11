@@ -15,7 +15,6 @@
 #include "Game.h"
 
 using namespace std;
-//using namespace rapidxml;
 
 //Function Declarations
 Map makeMap(ifstream&);

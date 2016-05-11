@@ -13,7 +13,6 @@ Game::Game()
 
 Game::Game(Map m)
 {
-//    cout << "Calling the Game constructor\n";
     map = m;
     Player P;
     player = P;
@@ -51,7 +50,6 @@ int Game::parseInput(string command)
     stringstream(command) >> word1 >> word2 >> word3 >> word4;
     triggered = parseTrigger(word1);
     
-    //cout << "Triggered: " << triggered << "\n";
     
     if(!triggered)
     {
@@ -67,7 +65,6 @@ int Game::parseInput(string command)
                 word1 = "west";
             
             string inThatDirection =room->roomInDirection(word1);
-//            cout << room->getName() << "\n";
             if(inThatDirection != "Can't go that way")
                 player.setCurrRoom(inThatDirection);
             else
@@ -79,7 +76,6 @@ int Game::parseInput(string command)
         }
         else if(word1 == "take")
         {
-            //room->printItems();
             if(room->itemInRoom(word2) != -1)
             {
                 player.addInventory(word2);
@@ -161,8 +157,6 @@ int Game::parseInput(string command)
                 if(room->containerInRoom(word4) != -1)
                 {
                     bool putted = map.putItemInContainer(word2, word4);
-//                    Container c = map.containers.find(word2)->second;
-//                    c.addItem(word2);
                     if(putted)
                         player.delInventory(word2);
                 }
@@ -261,13 +255,11 @@ void Game::checkTriggers()
             c->addTriggers(&currentTriggers);
         }
     }
-    //cout << "size of current triggers: " << currentTriggers.size() << "\n";
 }
 
 bool Game::parseTrigger(string command)
 {
     bool act = 0;
-    //cout << "Parsing trigger\n";
     for(int counter = 0; counter<currentTriggers.size(); counter++)
     {
         Trigger * T = currentTriggers.at(counter);
@@ -277,8 +269,6 @@ bool Game::parseTrigger(string command)
         {
             if(T->getTriggerCommand() == "" || T->getTriggerCommand() == command)
             {
-                //T.printTrigger();
-                //cout << "Owner: " << T.getCondition().owner << "\n";
                 if(T->getCondition().owner != "")
                     checkOwner(T);
                 else if(T->getCondition().status != "")
@@ -301,10 +291,8 @@ void Game::checkOwner(Trigger * T)
     bool h = T->getCondition().has;
     if(T->getCondition().owner == "inventory")
     {
-        //cout << "has found" << h << player.findItem(obj) << "\n";
         if((player.findItem(obj)!=-1 && h) || (player.findItem(obj)==-1 && !h))
         {
-            //cout << "Setting activated\n";
             T->setActivated(1);
             if(T->getTriggerPrint() != "")
                 cout << T->getTriggerPrint() << "\n";
@@ -345,7 +333,6 @@ void Game::checkStatus(Trigger * T)
     string obj = T->getCondition().object;
     string stat = T->getCondition().status;
     
-    //search the entire map for something that matches obj and check to see if its status matches stat
     for(auto it = map.items.begin(); it != map.items.end(); it++)
     {
         if(it->first == obj)
@@ -381,7 +368,6 @@ void Game::checkStatus(Trigger * T)
 
 void Game::parseAction(string action)
 {
-//    cout << action << endl;
     string aword1, aword2, aword3, aword4;
     stringstream(action) >> aword1 >> aword2 >> aword3 >> aword4;
     if(aword1 == "Add")

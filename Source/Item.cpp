@@ -21,12 +21,10 @@ Item::Item(XMLParse *xml, xml_node<> *rootNode)
 {
     turnedOn = 0;
     canTurnOn = 0;
-//    printf("Calling the Item Constructor\n");
     xml_node<> *pNode = rootNode->first_node();
     while(pNode != 0)
     {
         string node = pNode->name();
-//        cout << node << "\n";
         if(node == "name")
             name = pNode->value();
         else if(node == "description")

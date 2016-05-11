@@ -42,7 +42,6 @@ Trigger::Trigger(xml_node<> * root_node)
                 string att = nextNode->name();
                 if(att == "has")
                 {
-                    //cout << (strcmp(nextNode->value(), "no") ? "match" : "nomatch") << "\n";
                     if(strcmp(nextNode->value(), "no") == 0)
                         tc.has=0;
                     else
@@ -108,19 +107,3 @@ void Trigger::printTrigger()
 {
     cout<< "Command: " << triggerCommand << "\nType: " << type << "\n Condition: \thas " << tc.has << "\n\tobject " << tc.object<< "\n\towner " << tc.owner << "\n\tstatus " << tc.status << "\nAction: " << action<<"\n";
 }
-//bool Trigger::parseTrigger(Trigger T, string s)
-//{
-//    activated = 0;
-//    if(triggerCommand == "" || triggerCommand == s)
-//    {
-//        if(tc.owner != "")
-//        {
-//            checkOwner(T);
-//        }
-//        else if(tc.status != "")
-//        {
-//            checkStatus(T);
-//        }
-//    }
-//    return activated;
-//}

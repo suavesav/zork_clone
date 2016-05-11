@@ -44,11 +44,9 @@ public:
     
 private:
     string name;
-    //int health;
     string status;
     string description;
     vector<string> vulnerability;
-    //int hit;
     vector<Trigger> triggers;
     attack atk;
     

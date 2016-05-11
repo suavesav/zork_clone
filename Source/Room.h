@@ -32,7 +32,6 @@ class Room
 public:
     Room();
     Room(XMLParse *, xml_node<> *);
-//    Room(const Room &room);
     
     string getName();
     bool getInRoom();

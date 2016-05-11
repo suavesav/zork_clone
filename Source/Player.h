@@ -31,9 +31,7 @@ private:
     int health;
     int maxHealth;
     bool dead;
-    //Inventory
     vector<string> inventory;
-    //Position
     string currRoom;
 };
 

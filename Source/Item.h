@@ -47,7 +47,6 @@ private:
     TurnOn turnon;
     bool canTurnOn;
     bool turnedOn;
-    //string owner;
 };
 
 #endif

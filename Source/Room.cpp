@@ -16,12 +16,10 @@ Room::Room()
 Room::Room(XMLParse *xml, xml_node<> *rootNode)
 {
     inRoom = 0;
-//    printf("Calling the Room Constructor\n");
     xml_node<> *pNode = rootNode->first_node();
     while(pNode != 0)
     {
         string node = pNode->name();
-//        cout << node << "\n";
         if(node == "name")
             name = pNode->value();
         else if(node == "description")
@@ -61,13 +59,6 @@ Room::Room(XMLParse *xml, xml_node<> *rootNode)
         pNode = pNode->next_sibling();
     }
 }
-
-//Copy Constructor
-//Room::Room(const Room &r)
-//{
-//    name = r.name;
-//    description = r.description;
-//}
 
 //Get the name of the room
 string Room::getName()
@@ -140,11 +131,8 @@ void Room::printItems()
 //Checks if the player can go in a certain direction
 string Room::roomInDirection(string dir)
 {
-//    cout << dir << name << endl;
     for(int location = 0; location < borders.size(); location++)
     {
-//        cout << "BORDERS\n";
-//        cout << borders.at(location).direction << " " << borders.at(location).name << endl;
         if(borders.at(location).direction == dir)
         {
             return borders.at(location).name;
